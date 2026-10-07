@@ -1,29 +1,56 @@
-# evolve-agent
+# mestrado-scx — GABM para Redes Livres de Escala (GitHub Stars)
 
-A self-evolving single agent. It serves its own goals independently, with no manager or peers. In this repo, it delivers work, reviews itself, and revises itself.
+Dissertação de mestrado (PPG Modelagem em Sistemas Complexos, USP): validar empiricamente a
+metodologia GABM como ferramenta para simular a emergência de redes livres de escala,
+comparando resultados e mecanismos com os modelos clássicos (sobretudo Barabási–Albert 1999).
 
-## Core Idea
+**Pergunta:** a GABM reproduz propriedades macroscópicas livres de escala a partir de decisões
+microscópicas autônomas, com verossimilhança a dados reais vs. modelos clássicos?
 
-After each work cycle, ask: what could be better? Save reusable lessons into memory. Promote repeatedly verified lessons into principles. The agent updates its own rule file and keeps improving.
+## Fases do plano (`docs/plano.md`)
 
-## Repository Layout
+- **Fase I** — extração (GH Archive + API GitHub + temas)
+- **Fase II** — pós-processamento + enriquecimento semântico (embeddings, ChromaDB/LanceDB)
+- **Fase III** — simulação GABM (Concordia, descoberta em 2 etapas + cascata)
+- **Fase IV** — validação (Clauset et al. 2009, P(conectar|grau), KS + TOST, sensibilidade)
 
-| Path | Purpose |
+Ver `docs/revisao-metodologia.md` (3 bloqueadores: grafo bipartido, circularidade do ranking,
+critérios de validação).
+
+## Layout
+
+| Caminho | Conteúdo |
 | --- | --- |
-| `AGENTS.md` | Rule core: identity, mission, principles, and self-evolution loop. |
-| `KNOWLEDGE.md` | Knowledge index. |
-| `knowledge/` | Current facts: `system.md` covers the system model, and `current-state.md` covers goals and progress. |
-| `notes/` | Daily logs appended by date. Old entries are not edited after their day ends. |
+| `docs/plano.md` | resumo do plano e pergunta |
+| `docs/revisao-metodologia.md` | revisão com bloqueadores e recomendações |
+| `docs/latex/plano-abnt.tex` | **versão atual do texto** (abntex2) |
+| `docs/latex/refs.bib` | **bibliografia BibTeX** (133 entradas, estilo `abntex2cite alf`) |
+| `docs/latex/plano-abnt.pdf` | PDF compilado |
+| `code/` | pipeline: `docx_to_latex_v2.py`, `eq_map.py`, `build_abnt.py`, `convert_docs_to_latex.py` |
+| `data/raw/`, `data/processed/` | dados GH Archive / base filtrada (não commitar arquivos grandes) |
+| `results/figures/`, `results/tables/` | saídas verificáveis |
+| `knowledge/` | fatos atuais (`current-state.md` = objetivo e próximos passos) |
+| `notes/` | diário por data |
 
-## Startup Order
+## Escrevendo e citando
 
-1. Read `AGENTS.md`.
-2. Read `KNOWLEDGE.md`.
-3. Read the latest 2-3 files in `notes/`.
-4. Check the goal, worktree, code, data, and logs.
+- Texto em `docs/latex/plano-abnt.tex`; referências em `docs/latex/refs.bib`.
+- Citação parentética: `\cite{chave}` → "(SOBRENOME, ano)".
+  Narrativa: `\citeonline{chave}` → "Sobrenome (ano)". Múltiplas: `\cite{chave1, chave2}`.
+- Nova entrada mínima no `.bib` (chave única `sobrenomeano`):
+  `@misc{sobrenome2026, author = {Nome SOBRENOME and others}, title = {...}, year = {2026}, url = {...}, urldate = {...}}`
+- Autor corporativo: `author = {{ORG}}`; sem data: `year = {s.d.}` (sem colchetes).
+- Toda `\cite{chave}` precisa existir no `.bib`, senão sai `[?]` no PDF.
 
-## Memory Rules
+## Compilando (em `docs/latex/`)
 
-- `knowledge/` stores current facts only; update it when facts change.
-- `notes/` stores daily logs; append during the day and do not edit old entries.
-- Principle changes go directly into `AGENTS.md`.
+```sh
+pdflatex plano-abnt.tex; bibtex plano-abnt; pdflatex plano-abnt.tex; pdflatex plano-abnt.tex
+```
+
+Requer MiKTeX/TeX Live com `abntex2` (no Windows: `AppData/Local/Programs/MiKTeX/miktex/bin/x64` no PATH).
+
+## Agente (`AGENTS.md`)
+
+Este repo usa o loop `evolve-agent`: declarar objetivo, checar estado, menor mudança
+verificável, registrar lição em `notes/` a cada ciclo.

@@ -1,0 +1,31 @@
+.DS_Store
+*.swp
+*.swo
+*~
+# dados grandes e gerados
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+*.parquet
+*.db
+*.sqlite
+*.lance/
+chroma/
+# temp e logs
+.opencode/tool-output/
+*.tmp
+*.log
+# latex build artifacts (manter .tex e .pdf)
+*.aux
+*.toc
+*.out
+*.loa
+*.lot
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+.openscience/
+__pycache__/

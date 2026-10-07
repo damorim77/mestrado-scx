@@ -29,3 +29,5 @@ chroma/
 *.synctex.gz
 .openscience/
 __pycache__/
+*.bcf
+*.run.xml

@@ -32,20 +32,27 @@ critérios de validação).
 | `knowledge/` | fatos atuais (`current-state.md` = objetivo e próximos passos) |
 | `notes/` | diário por data |
 
-## Escrevendo e citando
+## Escrevendo e citando (biblatex-abnt + biber)
 
 - Texto em `docs/latex/plano-abnt.tex`; referências em `docs/latex/refs.bib`.
-- Citação parentética: `\cite{chave}` → "(SOBRENOME, ano)".
-  Narrativa: `\citeonline{chave}` → "Sobrenome (ano)". Múltiplas: `\cite{chave1, chave2}`.
-- Nova entrada mínima no `.bib` (chave única `sobrenomeano`):
-  `@misc{sobrenome2026, author = {Nome SOBRENOME and others}, title = {...}, year = {2026}, url = {...}, urldate = {...}}`
-- Autor corporativo: `author = {{ORG}}`; sem data: `year = {s.d.}` (sem colchetes).
-- Toda `\cite{chave}` precisa existir no `.bib`, senão sai `[?]` no PDF.
+- **Regra de ouro (ABNT): só o ano entre parênteses → narrativa; autores também entre
+  parênteses → MAIÚSCULAS** (`et al.` sempre minúsculo e itálico, automático):
+  - Narrativa: `\textcite{chave}` → "Sobrenome (ano)". Ex.: `\textcite{barabasi1999}`
+  - Parentética: `\parencite{chave}` → "(SOBRENOME, ano)". Ex.: `\parencite{newman2003}`
+  - Múltiplas: `\parencite{chave1, chave2}`. Com página: `\textcite[p.~25]{chave}`
+- A distinção maiúscula/minúscula depende da opção `accite` no preâmbulo
+  (`\usepackage[...,accite]{biblatex}`) — não remover.
+- Nova entrada mínima no `.bib` (chave única `sobrenomeano`, **sobrenome em Title Case** —
+  o estilo põe maiúscula sozinho onde a ABNT exige):
+  `@misc{sobrenome2026, author = {Nome Sobrenome and others}, title = {...}, year = {2026}, url = {...}, urldate = {2026-10-07}}`
+- Autor corporativo: `author = {{ORG}}` (chaves duplas); sem data: `year = {s.d.}` (sem colchetes);
+  `urldate` sempre ISO (`aaaa-mm-dd`).
+- Toda chave citada precisa existir no `.bib`, senão sai `[?]` no PDF.
 
 ## Compilando (em `docs/latex/`)
 
 ```sh
-pdflatex plano-abnt.tex; bibtex plano-abnt; pdflatex plano-abnt.tex; pdflatex plano-abnt.tex
+pdflatex plano-abnt.tex; biber plano-abnt; pdflatex plano-abnt.tex; pdflatex plano-abnt.tex
 ```
 
 Requer MiKTeX/TeX Live com `abntex2` (no Windows: `AppData/Local/Programs/MiKTeX/miktex/bin/x64` no PATH).

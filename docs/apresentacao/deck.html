@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@500;600;700&display=swap');
+:root{
+  --color-primary:#8FB4E8; --color-on-primary:#0B1220;
+  --color-secondary:#CBD5E1; --color-on-secondary:#0B1220;
+  --color-accent:#F59E0B; --color-on-accent:#0B1220;
+  --color-background:#0B1220; --color-foreground:#F1F5F9;
+  --color-card:#141F35; --color-card-foreground:#F1F5F9;
+  --color-muted:#1B2A45; --color-muted-foreground:#CBD5E1;
+  --color-border:#2A3B55; --color-ring:#8FB4E8;
+  --accent-gold:#F59E0B; --accent-cyan:#22D3EE; --accent-violet:#A78BFA; --accent-emerald:#34D399; --accent-sky:#38BDF8;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;height:100vh;overflow:hidden;color:var(--color-foreground);font-family:'Atkinson Hyperlegible',Arial,sans-serif;background-color:var(--color-background);background-image:radial-gradient(rgba(139,180,232,.055) 1px,transparent 1.6px),radial-gradient(900px 500px at 12% -5%,rgba(34,211,238,.10),transparent 60%),radial-gradient(800px 500px at 88% 0%,rgba(167,139,250,.10),transparent 60%),radial-gradient(1000px 600px at 50% 115%,rgba(245,158,11,.07),transparent 60%);background-size:26px 26px,100% 100%,100% 100%,100% 100%}
+.topbar{position:fixed;top:0;left:0;right:0;height:60px;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:10px 28px;background:#0E1830;border-bottom:1px solid var(--color-border);gap:16px}
+.brand{font-weight:700;color:var(--color-foreground);letter-spacing:.01em;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}
+.controls{display:flex;gap:10px;align-items:center;flex:0 0 auto}
+button{cursor:pointer;font-family:inherit;border:1px solid var(--color-border);background:transparent;color:var(--color-foreground);border-radius:10px;padding:8px 14px;font-size:15px;transition:box-shadow .2s,background .2s}
+button:hover{box-shadow:0 4px 14px rgba(0,0,0,.4);background:var(--color-muted)}
+button:focus-visible{outline:3px solid var(--color-ring);outline-offset:2px}
+.primary{background:var(--color-primary);color:var(--color-on-primary);border-color:var(--color-primary)}
+.progress{position:fixed;top:0;left:0;height:4px;background:var(--color-accent);width:0;z-index:60}
+.stage{max-width:1240px;height:calc(100vh - 60px - 40px);margin:60px auto 0;padding:16px 40px 0;display:flex}
+.slide{display:none;width:100%;height:100%;overflow:hidden;background:var(--color-card);border:1px solid var(--color-border);border-radius:20px;padding:40px 56px;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.slide.active{display:flex;flex-direction:column;justify-content:space-between;animation:fade .25s ease-out}
+.slide.active ul{flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
+.slide.active .grid3,.slide.active .flow,.slide.active .question,.slide.active .endcard{margin-top:auto;margin-bottom:auto}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion: reduce){.slide.active{animation:none} *{transition:none}}
+h1,h2{font-family:'Crimson Pro',Georgia,serif;color:var(--color-foreground);margin:0 0 12px;line-height:1.08}
+h1{font-size:42px} h2{font-size:36px}
+h1::after,h2::after{content:"";display:block;width:76px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet),var(--accent-gold));margin-top:12px}
+.slide.center h1::after,.slide.center h2::after{margin-left:auto;margin-right:auto}
+mark.hl2{background:linear-gradient(transparent 38%,rgba(109,80,196,.88) 38%,rgba(109,80,196,.88) 90%,transparent 90%);color:inherit;padding:0 .08em;border-radius:2px}
+.question{border-left-color:var(--accent-gold)}
+.stage>section.slide:nth-child(3) li strong{color:var(--accent-cyan)}
+.stage>section.slide:nth-child(4) li strong{color:var(--accent-cyan)}
+.stage>section.slide:nth-child(7) li strong{color:var(--accent-emerald)}
+.steps>.step:nth-child(1) .n{background:var(--accent-cyan);color:#0B1220}
+.steps>.step:nth-child(3) .n{background:var(--accent-violet);color:#0B1220}
+.stepArrow{color:var(--accent-gold)}
+.flow .card .n{background:var(--accent-emerald);color:#0B1220}
+.grid3 .card .n{background:var(--accent-sky);color:#0B1220}
+.whybar{margin-top:14px;background:rgba(34,211,238,.07);border:1px solid var(--accent-cyan);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
+.whybar strong{color:var(--accent-cyan)}
+.sub{font-size:21px;color:var(--color-secondary);line-height:1.4}
+.question{margin-top:20px;background:var(--color-muted);border-left:6px solid var(--color-accent);border-radius:12px;padding:16px 20px;font-size:21px;line-height:1.4}
+ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
+li{background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:14px 18px;font-size:20px;line-height:1.4}
+li strong{color:var(--color-foreground)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.steps{flex:1;min-height:0;display:flex;align-items:stretch;gap:10px;margin-top:20px}
+.step{flex:1;background:var(--color-muted);border:1px solid var(--color-border);border-radius:16px;padding:22px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--color-primary);color:#0B1220;font-weight:700;font-size:22px}
+.step h3{margin:0;font-size:22px;color:var(--color-foreground)}
+.step p{margin:0;font-size:18px;color:var(--color-muted-foreground);line-height:1.5}
+.step.hot{background:rgba(245,158,11,.12);border:2px solid var(--color-accent)}
+.step.hot .n{background:var(--color-accent);color:#0B1220}
+.stepArrow{align-self:center;flex:0 0 auto;color:var(--color-accent);font-size:32px;font-weight:700}
+.card{background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:16px;text-align:center}
+.card .n{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:var(--color-accent);color:#0B1220;font-weight:700;font-size:20px;margin-bottom:8px}
+.card h3{margin:8px 0;font-size:20px;color:var(--color-foreground)}
+.card p{font-size:17px;color:var(--color-muted-foreground);line-height:1.5}
+.footer{position:fixed;left:0;right:0;bottom:0;height:40px;display:flex;justify-content:center;align-items:center;padding:0 28px;color:var(--color-muted-foreground);font-size:17px;background:#0E1830;border-top:1px solid var(--color-border);z-index:50}
+#clock{font-variant-numeric:tabular-nums;font-weight:700;color:var(--color-foreground)}
+#clock.over{color:var(--color-accent)}
+.footer{gap:14px}
+#total{font-variant-numeric:tabular-nums;color:var(--color-muted-foreground)}
+#total.over{color:var(--color-accent)}
+mark.hl{background:linear-gradient(transparent 38%,rgba(154,100,4,.88) 38%,rgba(154,100,4,.88) 90%,transparent 90%);color:inherit;padding:0 .08em;border-radius:2px}
+ul.compact{gap:10px;margin-top:14px}
+ul.compact li{font-size:18px;padding:10px 16px}
+.baGrid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1.2fr;gap:20px;margin-top:14px}
+.baGrid>ul{margin-top:0;min-height:0}
+.baWrap{min-height:0;display:flex;flex-direction:column}
+#baPanel{flex:1;min-height:0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;overflow:hidden;position:relative}
+#baPanel svg{display:block}
+#baPanel .node{stroke:#0B1220;stroke-width:1.5px;transition:r .3s ease,fill .3s ease}
+#baPanel .link{stroke:#3B5175;stroke-opacity:.6}
+#baPanel .nodelabel{fill:#0B1220;font-size:11px;font-weight:700;pointer-events:none;paint-order:stroke;stroke:rgba(255,255,255,.65);stroke-width:2.5px}
+.baBar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px;font-size:16px;color:var(--color-muted-foreground);flex:0 0 auto}
+#baReplay{font-size:14px;padding:6px 12px;flex:0 0 auto}
+#baCount{font-variant-numeric:tabular-nums;font-weight:700;color:var(--color-foreground);flex:0 0 auto}
+.slide.active ul.compact{flex:none}
+.qbox{margin-top:12px;background:rgba(245,158,11,.1);border:1px solid var(--accent-gold);border-radius:12px;padding:12px 16px;font-size:19px;font-weight:700;line-height:1.45;color:var(--color-foreground);flex:0 0 auto}
+.baSplit{flex:1;min-height:0;display:flex;gap:14px;margin-top:12px}
+.baLeft{width:410px;flex:0 0 auto;min-height:0;display:flex;flex-direction:column;gap:12px}
+.baLeft.narrow{width:320px}
+.readmeFig{flex:1;min-height:0;margin:12px 0 0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.readmeFig img{flex:1;min-height:0;width:100%;object-fit:cover;object-position:top center;display:block}
+.readmeFig figcaption{flex:0 0 auto;font-size:12px;color:var(--color-muted-foreground);padding:6px 10px}
+.readmeFull{flex:1;min-height:0;margin:14px 0 0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.readmeFull img{flex:1;min-height:0;width:100%;object-fit:contain;display:block}
+.readmeFull figcaption{flex:0 0 auto;font-size:14px;color:var(--color-muted-foreground);padding:8px 14px;border-top:1px solid var(--color-border)}
+.baDiagram{flex:1;min-height:0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;overflow:hidden;display:flex}
+.baDiagram svg{width:100%;height:100%}
+.baLeft ul{margin-top:0}
+#baChart{flex:1;min-height:0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:10px 12px 8px;display:flex;flex-direction:column}
+#baChart h4{margin:0 0 8px;font-size:14px;font-weight:700;color:var(--color-foreground)}
+#baChart p{margin:0 0 4px;font-size:11px;color:var(--color-muted-foreground)}
+#baChartSvg{flex:1;min-height:0;width:100%}
+#baChart .axis text{fill:#94a3b8;font-size:9px}
+#baChart .axis path,#baChart .axis line{stroke:#475569}
+#baChart .chart-dot{opacity:.85}
+svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;margin-top:18px}
+.flow{display:flex;gap:12px;align-items:stretch;margin-top:20px}
+.flow div{flex:1;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:14px;text-align:center;font-size:18px}
+.flow .arrow{align-self:center;flex:0 0 auto;border:none;background:none;font-size:28px;color:var(--color-primary);padding:0 4px}
+.endcard{margin-top:20px;background:var(--color-accent);color:#0B1220;border-radius:14px;padding:18px 22px;font-size:19px;line-height:1.5;font-weight:700}
+.slide.center{text-align:center;justify-content:center}
+.slide.center .sub{line-height:1.8}
+.hypo{font-family:'Crimson Pro',Georgia,serif;font-size:32px;line-height:1.45;color:var(--color-foreground);max-width:920px;margin:24px auto 0}
+@media (max-width:900px){h1{font-size:32px}h2{font-size:28px}.slide{padding:28px 24px}.stage{padding:12px 16px 0}.grid3{grid-template-columns:1fr}.steps{flex-direction:column}.stepArrow{transform:rotate(90deg)}li{font-size:18px}.flow{flex-direction:column}.flow .arrow{transform:rotate(90deg)}.brand{max-width:52vw;font-size:14px}.baGrid{grid-template-columns:1fr;gap:12px}#baPanel{min-height:160px}.baSplit{flex-direction:column}#baChart{display:none}.baDiagram{min-height:220px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar">
+<div class="brand" title="Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub">Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub</div>
+<div class="controls">
+<button id="prevBtn" type="button" aria-label="Slide anterior">Anterior</button>
+<button id="nextBtn" type="button" class="primary" aria-label="Próximo slide">Próximo</button>
+<span id="counter" aria-live="polite">1 de 10</span>
+</div>
+</header>
+<main class="stage" id="stage">
+
+<section class="slide active center" data-time="1:00" aria-label="Slide 1 de 10">
+<h1>Emergência de Redes Livres de Escala com Agentes Generativos de IA para Estudo de Popularidade de Repositórios GitHub</h1>
+<p class="sub">Danilo Lindemberg Amorim<br>PPG Modelagem em Sistemas Complexos</p>
+<p>EACH-USP</p>
+</section>
+
+<section class="slide center" data-time="1:30" aria-label="Slide 2 de 10">
+<h2>Pergunta de pesquisa</h2>
+<p class="hypo"><mark class="hl2">Agentes generativos de IA</mark> podem reproduzir padrões <mark class="hl2">livres de escala</mark> observados em redes complexas sem imposição de um <mark class="hl2">mecanismo formativo</mark>?</p>
+</section>
+
+<section class="slide" data-time="2:30" aria-label="Slide 3 de 10">
+<h2>Redes Complexas Livres de Escala</h2>
+<div class="baSplit">
+<div class="baLeft">
+<ul class="compact">
+<li><strong>O que é.</strong> Em <em>redes livres de escala</em>, poucos nós (chamados hubs) concentram a maioria das ligações. A distribuição de grau segue a Lei da Potência.</li>
+<li><strong>Mecanismo.</strong> A <em>Anexação Preferencial</em> (Barabási-Albert) é o mecanismo formativo: cada nó novo cria 2 ligações com chance proporcional ao grau atual, o que gera expoente γ = 3.</li>
+<li><strong>Limite macro versus micro.</strong> O mecanismo gera o padrão global, mas não modela a decisão individual: não mostra como cada novo nó escolhe a qual nó se conectar.</li>
+</ul>
+<div id="baChart"><h4>Distribuição de grau (log-log)</h4><svg id="baChartSvg" role="img" aria-label="Gráfico da distribuição de grau em escala log-log"></svg></div>
+</div>
+<div id="baPanel" role="img" aria-label="Animação de rede livre de escala se formando pela regra de Barabási Albert"></div>
+</div>
+<div class="baBar"><span id="baStatus" aria-live="polite">Rede com 3 nós iniciais.</span><span id="baCount">0 nós</span><button id="baReplay" type="button">Rever</button></div>
+</section>
+
+<section class="slide" data-time="2:30" aria-label="Slide 4 de 10">
+<h2>GitHub como Rede Sociotécnica Livre de Escala</h2>
+<p class="sub">O GitHub é a maior plataforma de hospedagem de código-fonte de projetos de código aberto do mundo</p>
+<div class="baSplit">
+<div class="baLeft narrow">
+<ul class="compact">
+<li><strong>Rede sociotécnica</strong>: A interação entre nós devs e repos é indissociável e a caracteriza como uma única rede</li>
+<li><strong>Estrelas como <i>proxy</i> de popularidade</strong>: Devs mostram apreciação aos repos dando "estrelas" para eles</li>
+<li><strong>Livre de escala</strong>: Poucos repos com muitas estrelas e muitos repos com poucas ou nenhuma estrela</li>
+</ul>
+<div class="qbox">Como modelar o crescimento de popularidade dos repositórios GitHub?</div>
+</div>
+<div class="baDiagram" role="img" aria-label="Grafo bipartido em D3: desenvolvedores à esquerda ligados por stars a repositórios reais à direita">
+<svg id="ghSvg" viewBox="0 0 620 440"></svg>
+</div>
+</div>
+</section>
+
+<section class="slide" data-time="2:00" aria-label="Slide 5 de 10">
+<h2>Modelagem Baseada em Agentes (ABM)</h2>
+<p class="sub">Modelagem computacional na qual um fenômeno é representado e analisado em termos de seus <strong>agentes individuais e das interações entre eles</strong></p>
+<div class="baSplit">
+<div class="baLeft narrow">
+<ul class="compact">
+<li>Agentes com <mark class="hl2">perfis heterogêneos</mark> tomam decisões em <mark class="hl2">nível micro</mark></li>
+<li>Da <mark class="hl2">auto-organização</mark> dos agentes emergem fenômenos em <mark class="hl2">nível macro</mark>, sem um coordenador central</li>
+<li>Amplamente aplicado na Ciência de Redes para entender a dinâmica <mark class="hl2">"<i>nas</i> redes" e "<i>das</i> redes"</mark></li>
+<li><strong>Limitação:</strong> Codificar <mark class="hl2">regras de decisão complexas</mark>, subjetivas ou dependentes do contexto pode ser extremamente desafiador</li>
+</ul>
+</div>
+<div class="baDiagram" role="img" aria-label="Diagrama: agentes heterogêneos decidindo à esquerda e padrão global emergindo à direita">
+<svg viewBox="0 0 320 260">
+<defs><marker id="abmArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#475569"></path></marker></defs>
+<text x="58" y="24" text-anchor="middle" font-size="12" fill="#94a3b8">decisões individuais</text>
+<circle cx="40" cy="70" r="9" fill="#22D3EE"></circle>
+<circle cx="66" cy="120" r="8" fill="#A78BFA"></circle>
+<circle cx="38" cy="170" r="9" fill="#34D399"></circle>
+<circle cx="62" cy="215" r="8" fill="#F59E0B"></circle>
+<path d="M52,66 Q130,58 192,96" stroke="#475569" stroke-width="1.0" stroke-dasharray="5,4" fill="none" marker-end="url(#abmArr)"></path>
+<path d="M78,120 Q140,124 196,128" stroke="#475569" stroke-width="1.0" stroke-dasharray="5,4" fill="none" marker-end="url(#abmArr)"></path>
+<path d="M50,172 Q130,182 193,152" stroke="#475569" stroke-width="1.0" stroke-dasharray="5,4" fill="none" marker-end="url(#abmArr)"></path>
+<path d="M74,212 Q140,196 198,158" stroke="#475569" stroke-width="1.0" stroke-dasharray="5,4" fill="none" marker-end="url(#abmArr)"></path>
+<text x="240" y="24" text-anchor="middle" font-size="12" fill="#94a3b8">padrão global</text>
+<line x1="240" y1="132" x2="202" y2="100" stroke="#3B5175" stroke-width="1.4"></line>
+<line x1="240" y1="132" x2="278" y2="100" stroke="#3B5175" stroke-width="1.4"></line>
+<line x1="240" y1="132" x2="198" y2="164" stroke="#3B5175" stroke-width="1.4"></line>
+<line x1="240" y1="132" x2="282" y2="164" stroke="#3B5175" stroke-width="1.4"></line>
+<line x1="240" y1="132" x2="240" y2="184" stroke="#3B5175" stroke-width="1.4"></line>
+<circle cx="202" cy="100" r="6" fill="#22D3EE"></circle>
+<circle cx="278" cy="100" r="6" fill="#A78BFA"></circle>
+<circle cx="198" cy="164" r="6" fill="#34D399"></circle>
+<circle cx="282" cy="164" r="6" fill="#38BDF8"></circle>
+<circle cx="240" cy="184" r="6" fill="#F59E0B"></circle>
+<circle cx="240" cy="132" r="17" fill="#F59E0B"></circle>
+</svg>
+</div>
+</div>
+</section>
+
+<section class="slide" data-time="1:00" aria-label="Slide 6 de 10">
+<h2>O agravante: README</h2>
+<figure class="readmeFull"><img src="media/readme-vscode.png" alt="Captura real da página do README do repositório microsoft/vscode"><figcaption>README real do microsoft/vscode (out/2026). Riqueza semântica que regra fixa não captura (Wang et al., 2023).</figcaption></figure>
+</section>
+
+<section class="slide" data-time="2:30" aria-label="Slide 7 de 10">
+<h2>Modelagem Baseada em Agentes <mark class="hl2">Generativos</mark> (GABM)</h2>
+<p class="sub">Paradigma de simulação computacional que combina a ABM tradicional com <strong>Inteligência Artificial Generativa</strong>, particularmente <strong>Modelos de Linguagem de Grande Escala (LLMs)</strong>.</p>
+<div class="grid3">
+<div class="card"><span class="n">1</span><h3>LLM como cérebro</h3><p>Percebe, lembra, avalia e decide. Segue o padrão Percepção, Cérebro e Ação.</p></div>
+<div class="card"><span class="n">2</span><h3>Micro verossímil</h3><p>Afinidade temática, qualidade percebida e reputação em cada escolha.</p></div>
+<div class="card"><span class="n">3</span><h3>Aposta</h3><p>Os hubs emergem das decisões, sem regra imposta.</p></div>
+</div>
+<div class="whybar"><strong>Por que GABM e não ABM tradicional?</strong> Regras fixas bastam quando a decisão é simples. Dar star exige interpretar, julgar e ponderar: denso demais para se isso, faça aquilo.</div>
+</section>
+
+<section class="slide" data-time="2:30" aria-label="Slide 8 de 10">
+<h2>Observar, Simular, Comparar</h2>
+<div class="grid3">
+<div class="card"><span class="n">1</span><h3>Observar o real</h3><p>Coletar stars e contexto em janelas mensais, com representação semântica do conteúdo.</p></div>
+<div class="card"><span class="n">2</span><h3>Simular com agentes</h3><p>Agentes exploram o catálogo, montam lista curta e escolhem onde dar star.</p></div>
+<div class="card"><span class="n">3</span><h3>Comparar mundos</h3><p>Real contra simulado contra modelo clássico. Critérios: curva e mecanismo.</p></div>
+</div>
+</section>
+
+<section class="slide" data-time="2:30" aria-label="Slide 9 de 10">
+<h2>Por que isso importa</h2>
+<ul>
+<li><strong>Científico.</strong> Testa mecanismo, não só ajuste de curva.</li>
+<li><strong>Metodológico.</strong> Mostra se o modelo decide de forma verossímil ou só imita padrão.</li>
+<li><strong>Prático.</strong> Explica concentração de atenção e ajuda a discutir descoberta justa.</li>
+<li><strong>Atualidade.</strong> Validação de simulação generativa é o desafio central em 2025 e 2026.</li>
+</ul>
+</section>
+
+<section class="slide" data-time="1:30" aria-label="Slide 10 de 10">
+<h2>Fechamento para vídeo gravado</h2>
+<ul>
+<li><strong>A GABM testa se a curva emerge</strong> de decisões verossímeis.</li>
+<li><strong>Modelos clássicos impõem a regra.</strong> Agentes decidem.</li>
+<li><strong>GitHub Stars é o teste observável</strong> pelos critérios de curva e mecanismo.</li>
+</ul>
+<div class="endcard">Obrigado por assistir. Danilo Lindemberg Amorim. PPG Modelagem em Sistemas Complexos, EACH-USP.<br>Plano completo e referências disponíveis sob solicitação. Manter esta tela parada por 10 segundos para o corte.</div>
+</section>
+
+</main>
+<div class="footer">
+<span id="clock" aria-live="polite" title="Tempo decorrido neste slide em relação ao tempo previsto">0:00 de 1:00</span>
+<span aria-hidden="true">•</span>
+<span id="total" title="Tempo total decorrido na apresentação">Total 0:00 de 20:00</span>
+</div>
+<script src="lib/d3.v7.min.js"></script>
+<script src="ba-mechanism.js"></script>
+<script>
+(function(){
+var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
+var i=0, progress=document.getElementById('progress'), counter=document.getElementById('counter'), clock=document.getElementById('clock');
+var elapsed=0, total=60, timer=null, totalElapsed=0, totalTarget=1200, totalEl=document.getElementById('total');
+function parseTime(s){var p=s.split(':');return parseInt(p[0],10)*60+parseInt(p[1],10)}
+function fmt(s){var m=Math.floor(s/60), r=s%60;return m+':'+(r<10?'0':'')+r}
+function update(){clock.textContent=fmt(elapsed)+' de '+slides[i].dataset.time;clock.classList.toggle('over',elapsed>total);totalEl.textContent='Total '+fmt(totalElapsed)+' de 20:00';totalEl.classList.toggle('over',totalElapsed>totalTarget)}
+function show(n){
+i=(n+slides.length)%slides.length;
+slides.forEach(function(s,k){s.classList.toggle('active',k===i)});
+counter.textContent=(i+1)+' de '+slides.length;
+progress.style.width=((i+1)/slides.length*100)+'%';
+if(timer){clearInterval(timer)}
+elapsed=0;total=parseTime(slides[i].dataset.time);update();
+timer=setInterval(function(){elapsed++;totalElapsed++;update()},1000);
+if(i===2){baPlay()}else{baPause()}
+window.scrollTo({top:0,behavior:'auto'});
+}
+document.getElementById('prevBtn').addEventListener('click',function(){show(i-1)});
+document.getElementById('nextBtn').addEventListener('click',function(){show(i+1)});
+document.addEventListener('keydown',function(e){
+if(e.key==='ArrowRight'){show(i+1)}
+else if(e.key==='ArrowLeft'){show(i-1)}
+});
+var baPanel=document.getElementById('baPanel'),baStatus=document.getElementById('baStatus'),baCount=document.getElementById('baCount');
+var baM0=3,baM=2,baMaxN=800,baGapMs=185;
+var baChartG=null,baX=null,baY=null,baXAxis=null,baYAxis=null,baXAxisG=null,baYAxisG=null;
+var baNodes=[],baLinks=[],baSim=null,baTimer=null,baBuilt=false,baDone=false,baRand=null,baSvg=null,baG=null,baLinkSel=null,baNodeSel=null,baLabelSel=null,baColor=null;
+var baRM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function baMaxDeg(){var m=0,i;for(i=0;i<baNodes.length;i++){if(baNodes[i].degree>m){m=baNodes[i].degree}}return m}
+function baBuild(){
+if(!window.d3||!window.BA){baStatus.textContent='Animação indisponível: D3 não carregou.';return false}
+var W=baPanel.clientWidth||560,H=baPanel.clientHeight||380;
+baSvg=d3.select('#baPanel').append('svg').attr('width',W).attr('height',H);
+baG=baSvg.append('g');
+baSim=d3.forceSimulation()
+.force('link',d3.forceLink().id(function(d){return d.id}).distance(30).strength(1))
+.force('charge',d3.forceManyBody().strength(-150))
+.force('center',d3.forceCenter(W/2,H/2).strength(0.05))
+.force('collide',d3.forceCollide().radius(function(d){return BA.radius(d.degree)+5}).iterations(2));
+baLinkSel=baG.append('g').selectAll('.link');
+baNodeSel=baG.append('g').selectAll('.node');
+baLabelSel=baG.append('g').selectAll('.nodelabel');
+baSim.on('tick',baTicked);
+baColor=d3.scaleSequential(d3.interpolateTurbo).domain([0,1]);
+baChartBuild();
+baBuilt=true;
+return true;
+}
+function baReset(){
+baNodes=[];baLinks=[];baRand=BA.mulberry32(42);baDone=false;
+var i,j;
+for(i=0;i<baM0;i++){baNodes.push({id:i,degree:0})}
+for(i=0;i<baM0;i++){for(j=i+1;j<baM0;j++){baLinks.push({source:i,target:j});baNodes[i].degree++;baNodes[j].degree++}}
+baRefresh();
+baStatus.textContent='Rede com 3 nós iniciais.';
+}
+function baAddOne(){
+if(baNodes.length>=baMaxN){baFinish();return}
+var id=baNodes.length,nd={id:id,degree:0};
+var degs=baNodes.map(function(n){return n.degree});
+var tg=BA.pickTargets(baRand,degs,baM);
+baNodes.push(nd);
+tg.forEach(function(t){baLinks.push({source:id,target:t});nd.degree++;baNodes[t].degree++});
+baRefresh();
+baStatus.textContent='Nó '+id+' de '+baMaxN+' ligado. Maior grau: '+baMaxDeg()+'.';
+}
+function baRefresh(){
+baLinkSel=baLinkSel.data(baLinks);
+baLinkSel.exit().remove();
+var le=baLinkSel.enter().append('line').attr('class','link');
+baLinkSel=le.merge(baLinkSel);
+baNodeSel=baNodeSel.data(baNodes,function(d){return d.id});
+baNodeSel.exit().remove();
+var ne=baNodeSel.enter().append('circle').attr('class','node').attr('r',0).attr('fill','#fff').call(d3.drag().on('start',baDragS).on('drag',baDrag).on('end',baDragE));
+ne.append('title');
+baNodeSel=ne.merge(baNodeSel);
+baNodeSel.attr('r',function(d){return BA.radius(d.degree)}).attr('fill',function(d){return BA.colorFor(baColor,d.degree)}).select('title').text(function(d){return 'Nó '+d.id+' | Grau: '+d.degree});
+baLabelSel=baLabelSel.data(baNodes,function(d){return d.id});
+baLabelSel.exit().remove();
+var baLabEnter=baLabelSel.enter().append('text').attr('class','nodelabel').attr('text-anchor','middle').attr('dy','.35em');
+baLabelSel=baLabEnter.merge(baLabelSel);
+baLabelSel.text(function(d){return d.degree>=20?d.degree:''}).style('display',function(d){return d.degree>=20?'':'none'});
+baSim.nodes(baNodes);baSim.force('link').links(baLinks);baSim.alpha(0.3).restart();
+baCount.textContent=baNodes.length+' nós';
+baChartUpdate();
+}
+function baChartBuild(){
+var box=document.getElementById('baChart');
+var W=Math.max(box.clientWidth-24,180),H=Math.max(box.clientHeight-58,110);
+var m={top:6,right:8,bottom:22,left:30};
+var svg=d3.select('#baChartSvg').attr('width',W).attr('height',H);
+var g=svg.append('g').attr('transform','translate('+m.left+','+m.top+')');
+baChartG=g;
+baX=d3.scaleLog().base(10).range([0,W-m.left-m.right]);
+baY=d3.scaleLog().base(10).range([H-m.top-m.bottom,0]);
+baXAxis=d3.axisBottom(baX).ticks(3,'~s');
+baYAxis=d3.axisLeft(baY).ticks(3,'~s');
+baXAxisG=g.append('g').attr('class','axis').attr('transform','translate(0,'+(H-m.top-m.bottom)+')');
+baYAxisG=g.append('g').attr('class','axis');
+svg.append('text').attr('x',m.left+(W-m.left-m.right)/2).attr('y',H-4).attr('text-anchor','middle').style('fill','#94a3b8').style('font-size','9px').text('grau (k)');
+svg.append('text').attr('transform','rotate(-90)').attr('x',-(m.top+(H-m.top-m.bottom)/2)).attr('y',10).attr('text-anchor','middle').style('fill','#94a3b8').style('font-size','9px').text('freq');
+}
+function baChartUpdate(){
+var degs=baNodes.map(function(n){return n.degree});
+var h=BA.histogram(degs);
+baX.domain([1,Math.max(10,h.maxK)]);
+baY.domain([1,Math.max(10,h.maxFreq)]);
+baXAxisG.call(baXAxis);baYAxisG.call(baYAxis);
+var dots=baChartG.selectAll('.chart-dot').data(h.data,function(d){return d.k});
+dots.exit().remove();
+dots.enter().append('circle').attr('class','chart-dot').attr('r',3.5).attr('stroke','#0B1220').attr('stroke-width',1).merge(dots).attr('cx',function(d){return baX(d.k)}).attr('cy',function(d){return baY(d.freq)}).attr('fill',function(d){return BA.colorFor(baColor,d.k)});
+}
+function baTicked(){
+baLinkSel.attr('x1',function(d){return d.source.x}).attr('y1',function(d){return d.source.y}).attr('x2',function(d){return d.target.x}).attr('y2',function(d){return d.target.y});
+baNodeSel.attr('cx',function(d){return d.x}).attr('cy',function(d){return d.y});
+baLabelSel.attr('x',function(d){return d.x}).attr('y',function(d){return d.y});
+}
+function baDragS(event,d){if(!event.active){baSim.alphaTarget(0.3).restart()}d.fx=d.x;d.fy=d.y}
+function baDrag(event,d){d.fx=event.x;d.fy=event.y}
+function baDragE(event,d){if(!event.active){baSim.alphaTarget(0)}d.fx=null;d.fy=null}
+function baFinish(){
+baDone=true;
+if(baTimer){clearInterval(baTimer);baTimer=null}
+baStatus.textContent='Rede pronta: '+baMaxN+' nós pela regra de Barabási Albert. Maior hub com grau '+baMaxDeg()+'.';
+}
+function baPlay(){
+if(!baBuilt){if(!baBuild()){return}baReset()}
+if(baRM){while(!baDone){baAddOne()}return}
+if(!baDone&&!baTimer){baTimer=setInterval(baAddOne,baGapMs)}
+}
+function baPause(){if(baTimer){clearInterval(baTimer);baTimer=null}}
+document.getElementById('baReplay').addEventListener('click',function(){baPause();baReset();baPlay()});
+(function ghDiagram(){
+if(!window.d3){return}
+var repos=[
+{id:'linux',name:'torvalds / linux',stars:250299,avatar:'media/avatar-torvalds.jpg'},
+{id:'vscode',name:'microsoft / vscode',stars:193069,avatar:'media/avatar-microsoft.png'},
+{id:'curl',name:'curl / curl',stars:42942,avatar:'media/avatar-curl.png'},
+{id:'dots',name:'eu / meu-projeto',stars:11,mock:true},
+{id:'blog',name:'eu  / ideia-milionaria',stars:0,mock:true}
+];
+var devFills=['#22D3EE','#A78BFA','#34D399','#F59E0B','#38BDF8','#22D3EE','#A78BFA','#34D399'];
+var devs=devFills.map(function(f,i){return {x:60,y:45+i*45,fill:f}});
+var repoPos=[{x:440,y:62},{x:440,y:147},{x:440,y:222},{x:440,y:292},{x:440,y:352}];
+var rScale=function(s){return Math.min(30,Math.max(5,4+Math.sqrt(s)/18))};
+var fmtStars=function(s){return s>=1000?'★ ~'+Math.round(s/1000)+' mil':'★ '+s};
+var links=[{s:0,t:0},{s:1,t:0},{s:2,t:0},{s:3,t:0},{s:4,t:0},{s:5,t:0},{s:1,t:1},{s:4,t:1},{s:6,t:1},{s:0,t:2},{s:7,t:2},{s:5,t:3},{s:6,t:4}];
+var svg=d3.select('#ghSvg');
+var linkFn=d3.linkHorizontal();
+var gL=svg.append('g'),gN=svg.append('g');
+var defs=svg.append('defs');
+gL.selectAll('path').data(links).enter().append('path')
+.attr('d',function(d){var a=devs[d.s],b=repoPos[d.t];return linkFn({source:[a.x+12,a.y],target:[b.x-10,b.y]})})
+.attr('fill','none').attr('stroke','#3B5175').attr('stroke-width',1.8);
+var devG=gN.selectAll('g.dev').data(devs).enter().append('g');
+devG.append('circle').attr('cx',function(d){return d.x}).attr('cy',function(d){return d.y}).attr('r',11).attr('fill',function(d){return d.fill}).attr('stroke','#0B1220').attr('stroke-width',1.5);
+var repoG=gN.selectAll('g.repo').data(repos).enter().append('g');
+repoG.each(function(d,i){
+var g=d3.select(this),p=repoPos[i],r=rScale(d.stars);
+if(d.avatar){
+var cp='ghclip-'+d.id;
+defs.append('clipPath').attr('id',cp).append('circle').attr('cx',p.x).attr('cy',p.y).attr('r',Math.max(r-1,1));
+g.append('circle').attr('cx',p.x).attr('cy',p.y).attr('r',r).attr('fill','#1B2A45');
+g.append('image').attr('href',d.avatar).attr('x',p.x-r).attr('y',p.y-r).attr('width',2*r).attr('height',2*r).attr('clip-path','url(#'+cp+')').attr('preserveAspectRatio','xMidYMid slice').attr('onerror',"this.style.display='none'");
+g.append('circle').attr('cx',p.x).attr('cy',p.y).attr('r',r).attr('fill','none').attr('stroke',i===0?'#F59E0B':'#2A3B55').attr('stroke-width',i===0?2.5:1.5);
+}else{
+g.append('circle').attr('cx',p.x).attr('cy',p.y).attr('r',r).attr('fill','#475569').attr('stroke','#94a3b8').attr('stroke-width',1.5);
+g.append('text').attr('x',p.x).attr('y',p.y).attr('dy','.35em').attr('text-anchor','middle').attr('font-size','13').attr('font-weight','700').attr('fill','#F1F5F9').text(d.name.charAt(0).toUpperCase());
+}
+g.append('text').attr('x',p.x).attr('y',p.y+r+20).attr('text-anchor','middle').attr('font-size','12').attr('font-weight','700').attr('fill','#F1F5F9').text(d.name+' · '+fmtStars(d.stars));
+});
+var gT=svg.append('g');
+gT.append('text').attr('x',60).attr('y',24).attr('text-anchor','middle').attr('font-size','12').attr('fill','#94a3b8').text('desenvolvedores');
+gT.append('text').attr('x',440).attr('y',24).attr('text-anchor','middle').attr('font-size','12').attr('fill','#94a3b8').text('repositórios');
+})();
+show(0);
+})();
+</script>
+</body>
+</html>

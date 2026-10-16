@@ -5,6 +5,7 @@
 - `refs.bib` = **bibliografia** (133 entradas; 4 reconstruídas e marcadas no cabeçalho —
   confirmar: `vasquez2003`, `song2005`, `boccara2004`, `wolfram2022`).
 - `plano-abnt.pdf` = saída compilada (pdflatex + biber + pdflatex + pdflatex).
+- `plano-abnt.bat` = compila tudo com duplo-clique (configura o PATH do MiKTeX sozinho).
 - Citações: `\textcite` (narrativa "Sobrenome (ano)") vs `\parencite` (parentética
   "(SOBRENOME, ano)"); a diferença exige a opção `accite` do biblatex — ver regra no README raiz.
 - Geradores reproduzíveis: `code/docx_to_latex_v2.py` (docx→v2) → `code/build_abnt.py` +

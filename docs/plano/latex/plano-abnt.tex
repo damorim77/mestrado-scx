@@ -103,7 +103,7 @@ Mas esses grafos regulares com padrões geométricos perfeitos não eram adequad
   \item Modelo B ($G(N,p)$): Dada uma probabilidade $p$, e uma quantidade $N$ de nós, determina-se o número $M = N \times (N-1)/2$ de pares possíveis. A formação de uma aresta entre um par de nós $(i,j)$ é dada por $p$, enquanto a não formação é dada por $1-p$. As decisões de formação de pares são independentes, e a probabilidade de um resultado específico é dada pelo produto das probabilidades de cada decisão. Assim, em um grafo com uma quantidade $K$ de arestas, o espaço de probabilidade é dado por  $P(G) = p^{K} \times (1-p)^{(M-K)}$, caracterizando uma distribuição binomial, enquanto que a probabilidade do grafo ter $K$ arestas é dada por $P(K) = \binom{M}{K} \times p^{K} \times (1-p)^{(M-K)}$.
 \end{itemize}
 
-\indent As principais mudanças observadas entre um modelo e outro se referem a quais parâmetros são fixados a priori e ao tipo de decisão tomado na formação das arestas entre os pares de nós. No que diz respeito aos parâmetros, enquanto no modelo A, $K$ é fixado,, no modelo B, $p$ é fixado, deixando $K$ livre. Já no que tange ao tipo de decisão, no modelo A as decisões são dependentes. Como os pares de nós são sorteados sem reposição e o número final de nós é pré-fixado, isso implica em uma competição entre pares de nós, logo as decisões são dependentes. Já no modelo B, os pares são formados sem considerar se outros pares foram formados ou não, desta forma caracterizando decisões independentes  \parencite{latora2017}.
+As principais mudanças observadas entre um modelo e outro se referem a quais parâmetros são fixados a priori e ao tipo de decisão tomado na formação das arestas entre os pares de nós. No que diz respeito aos parâmetros, enquanto no modelo A, $K$ é fixado,, no modelo B, $p$ é fixado, deixando $K$ livre. Já no que tange ao tipo de decisão, no modelo A as decisões são dependentes. Como os pares de nós são sorteados sem reposição e o número final de nós é pré-fixado, isso implica em uma competição entre pares de nós, logo as decisões são dependentes. Já no modelo B, os pares são formados sem considerar se outros pares foram formados ou não, desta forma caracterizando decisões independentes  \parencite{latora2017}.
 
 A primeira implicação derivada desses modelos é que ao se conectarem os nós aleatoriamente, a maioria deles resulta em um mesmo número de conexões, dessa forma apresentando distribuição homogênea de grau com um grau médio $\langle k \rangle$.
 
@@ -139,14 +139,14 @@ Os autores argumentam que a fim de representar de maneira mais fidedigna as rede
   \item Cada aresta se reconecta a um nó escolhido aleatoriamente com probabilidade \textit{p}, com $0 < p < 1$, e aplicam-se restrições mínimas como formações de arestas de um nó consigo mesmo e arestas duplicadas entre dois nós.
 \end{enumerate}
 
-\indent Partindo disso, os pesquisadores então reavaliaram a distância entre os nós e o nível de agrupamento local com as seguintes medidas abaixo:
+Partindo disso, os pesquisadores então reavaliaram a distância entre os nós e o nível de agrupamento local com as seguintes medidas abaixo:
 
 \begin{itemize}
   \item Caminho característico ($L(p)$): mede a distância média mínima entre todos os pares de nós da rede, em outras palavras, quantos “passos” são necessários em média para sair de um nó e chegar até outro.
   \item Coeficiente de agrupamento ($C(p)$): mede a probabilidade de que dois nó s vizinhos de um mesmo nó  em comum, estejam também conectados entre si. Formalmente, para um determinado nó  $v$, com $k_{v}$ vizinhos, o máximo de arestas possíveis entre elas é dado por $k_{v}(k_{v}-1)/2$. Dado que $C_{v}$ é a fração dessas arestas que realmente existem, $C(p)$ é, portanto, a média de $C_{v}$ sobre todos os nós $v$.
 \end{itemize}
 
-\indent O Quadro 3 resume o comportamento observado nessas duas medidas comparativamente entre os modelos de rede.
+O Quadro 3 resume o comportamento observado nessas duas medidas comparativamente entre os modelos de rede.
 
 Quadro 3 - Comparativo das medidas de caminho característico e coeficiente de agrupamento entre modelos de rede
 
@@ -180,7 +180,7 @@ A definição clássica de redes livres de escala é oferecida por \textcite{alb
   \item Formação de \textit{hubs}: a assimetria de distribuição de grau dos nós implica na formação de nós super conectados, isto é, que têm uma ampla quantidade de arestas conectadas a outros nós.
 \end{enumerate}
 
-\indent Outra característica importante desse modelo, discutida pelos autores, é a sua robustez a falhas acidentais de nós em contrapartida com a vulnerabilidade de falha dos \textit{hubs}. A tolerância a falhas decorre da sua distribuição heterogênea que apresenta uma quantidade abundante de nós pouco conectados. Nesse sentido, uma falha aleatória tem maior probabilidade de afetar um nó pouco conectado. Mas essa robustez vem em troca da vulnerabilidade dos \textit{hubs}. A remoção de um único \textit{hub} apresenta um efeito disruptivo dramático que destrói a integridade do sistema rapidamente. Nesse sentido, o \textit{hub }fica muito vulnerável a ataques direcionados. Por essa razão, na literatura essas redes são descritas como “robustas, mas frágeis” \parencite{wang2003, newman2003, serafino2021}. Um exemplo muito claro disso pode ser observado no domínio de desenvolvimento de \textit{software }com os recentes ataques de cadeia de suprimento \parencite{thompson1984} à rede de repositórios de pacotes de código-fonte visando introduzir brechas de segurança em pacotes amplamente utilizados por desenvolvedores \parencite{saayman2026, dholakia2026}.
+Outra característica importante desse modelo, discutida pelos autores, é a sua robustez a falhas acidentais de nós em contrapartida com a vulnerabilidade de falha dos \textit{hubs}. A tolerância a falhas decorre da sua distribuição heterogênea que apresenta uma quantidade abundante de nós pouco conectados. Nesse sentido, uma falha aleatória tem maior probabilidade de afetar um nó pouco conectado. Mas essa robustez vem em troca da vulnerabilidade dos \textit{hubs}. A remoção de um único \textit{hub} apresenta um efeito disruptivo dramático que destrói a integridade do sistema rapidamente. Nesse sentido, o \textit{hub }fica muito vulnerável a ataques direcionados. Por essa razão, na literatura essas redes são descritas como “robustas, mas frágeis” \parencite{wang2003, newman2003, serafino2021}. Um exemplo muito claro disso pode ser observado no domínio de desenvolvimento de \textit{software }com os recentes ataques de cadeia de suprimento \parencite{thompson1984} à rede de repositórios de pacotes de código-fonte visando introduzir brechas de segurança em pacotes amplamente utilizados por desenvolvedores \parencite{saayman2026, dholakia2026}.
 
 Embora o termo “livre de escala” frequentemente seja referido quase como um sinônimo de existência da Lei da Potência, alguns autores reconhecem que as redes livres de escala do mundo real podem apresentar desvios dela \parencite{smith2020, meng2023, crane2015}. \textcite{newman2003} observa a presença de formas funcionais alternativas como:
 
@@ -191,7 +191,7 @@ Embora o termo “livre de escala” frequentemente seja referido quase como um 
   \item Grafo bipartite: Redes que seguem este modelo de grafo podem ter outras distribuições muito mais complexas que a Lei da Potência.
 \end{itemize}
 
-\indent Ainda assim, o autor argumenta a favor do uso intercambiável dos termos “Lei da Potência” e “livre de escala” para fins práticos. Ele afirma que a Lei da Potência frequentemente domina o intervalo de graus observáveis, que desvios costumam ocorrer apenas nas caudas da distribuição, e que os resultados da tratabilidade analítica continuam valendo para estas redes, que ele particularmente denomina como “quase-livres de escala”. Dessa forma, o autor sugere que o comportamento livre de escala deve ser interpretado mais como aproximativo de uma Lei da Potência do que uma definição exata.
+Ainda assim, o autor argumenta a favor do uso intercambiável dos termos “Lei da Potência” e “livre de escala” para fins práticos. Ele afirma que a Lei da Potência frequentemente domina o intervalo de graus observáveis, que desvios costumam ocorrer apenas nas caudas da distribuição, e que os resultados da tratabilidade analítica continuam valendo para estas redes, que ele particularmente denomina como “quase-livres de escala”. Dessa forma, o autor sugere que o comportamento livre de escala deve ser interpretado mais como aproximativo de uma Lei da Potência do que uma definição exata.
 
 No entanto, há trabalhos que criticam diretamente a Lei da Potência como premissa fundamental para descrever redes livres de escala. \textcite{broido2019} empreenderam um estudo empírico com quase 1 mil redes de diversos domínios, onde constataram que a maioria das redes do mundo real poderia ser descrita de maneira similar ou melhor por uma distribuição log-normal. Uma implicação decorrente disso é a de que se a maioria das redes pode ser descrita por essa distribuição, então elas não seriam de fato livres de escala. Esse argumento coloca em questionamento a noção de ubiquidade desse modelo de redes, que é suportada por diversos trabalhos que argumentam em favor de definições mais flexíveis, ou que apresentam justificativas do desvio dos dados empíricos com relação à Lei da Potência pura \parencite{artico2020, serafino2021, voitalov2019, zhang2021}. Mas este é um debate que continua ativo na comunidade acadêmica com recentes tentativas de oferecer propostas conciliadoras  \parencite{holme2019}.
 
@@ -215,7 +215,7 @@ Price adaptou modelos probabilísticos populacionais para modelar a desigualdade
   \item Acíclico: Devido à restrição de que um artigo novo só pode citar artigos pré-existentes (salvo raras exceções editoriais), é impossível formar um ciclo de citações, uma vez que o artigo antigo, não pode citar um artigo que ainda não foi escrito.
 \end{itemize}
 
-\indent No que diz respeito às premissas explícitas assumidas pelo pesquisador, é possível resumi-las em três:
+No que diz respeito às premissas explícitas assumidas pelo pesquisador, é possível resumi-las em três:
 
 \begin{enumerate}
   \item Crescimento contínuo: O sistema está em crescimento, novos artigos são publicados recorrentemente
@@ -223,7 +223,7 @@ Price adaptou modelos probabilísticos populacionais para modelar a desigualdade
   \item Contágio de via única:  O fracasso em obter novas citações de um artigo existente não é punido com uma maior chance de não conseguir novas citações, ou de perder as citações que já se tem acumuladas.
 \end{enumerate}
 
-\indent O princípio da Vantagem Cumulativa traduz em uma formulação matemática a noção intuitiva de que o “sucesso gera sucesso”, ou mais popularmente “o rico fica mais rico”. A ideia era representar o fenômeno de que artigos amplamente citados tinham maior propensão a serem ainda mais citados. Esse fenômeno já era conhecido na Sociologia como Efeito Mateus \parencite{merton1968} e a formulação de Price foi predecessora da Ligação Preferencial em ciência de redes, posteriormente proposta por \textcite{barabasi1999}.
+O princípio da Vantagem Cumulativa traduz em uma formulação matemática a noção intuitiva de que o “sucesso gera sucesso”, ou mais popularmente “o rico fica mais rico”. A ideia era representar o fenômeno de que artigos amplamente citados tinham maior propensão a serem ainda mais citados. Esse fenômeno já era conhecido na Sociologia como Efeito Mateus \parencite{merton1968} e a formulação de Price foi predecessora da Ligação Preferencial em ciência de redes, posteriormente proposta por \textcite{barabasi1999}.
 
 Aliado a este princípio, Price também assume um contágio de via única, isto é, admite que o “sucesso gera sucesso”, mas não admite que o “fracasso gera fracasso”. O fracasso tem um status de não-evento, não penalizando com uma chance futura de fracasso aumentada.
 
@@ -238,7 +238,7 @@ Uma reinterpretação do modelo de Price no contexto de redes assume que a topol
   \item As $c$ arestas de saída devem se conectar a nós pré-existentes na rede que representam os artigos pré-existentes, decidindo o destino através de uma regra de probabilidade, ditada pelo princípio da Vantagem Cumulativa.
 \end{enumerate}
 
-\indent Este modelo, embora focado apenas na rede de citações acadêmicas, e com a limitação de ser aplicável apenas a grafos direcionados, acabou se tornando o modelo pioneiro de crescimento de redes livres de escala \parencite{newman2010}.
+Este modelo, embora focado apenas na rede de citações acadêmicas, e com a limitação de ser aplicável apenas a grafos direcionados, acabou se tornando o modelo pioneiro de crescimento de redes livres de escala \parencite{newman2010}.
 
 \subsubsection*{2.1.2. Modelo Barabási-Albert}\addcontentsline{toc}{subsubsection}{2.1.2. Modelo Barabási-Albert}
 O mecanismo de ligação preferencial linear é o mecanismo clássico de crescimento de redes livres de escala proposto por \textcite{barabasi1999}. É o modelo estocástico de crescimento de redes mais difundido e que serviu de base para diversas extensões posteriores \parencite{albert2000, amaral2000, bianconi2001, holme2002, dorogovtsvev2000}.
@@ -250,7 +250,7 @@ A ideia central é demonstrar que a topologia observada em uma rede livre de esc
   \item Ligação preferencial: Novos nós têm maior probabilidade de se conectar a nós existentes que já estão mais conectados.
 \end{enumerate}
 
-\indent Os autores descrevem o processo de crescimento da rede da seguinte forma:
+Os autores descrevem o processo de crescimento da rede da seguinte forma:
 
 \begin{enumerate}
   \item Iniciar com $m_{0}$ nós conectados entre si
@@ -261,7 +261,7 @@ A ideia central é demonstrar que a topologia observada em uma rede livre de esc
   \item Após $t$ passos, há $t + m_{0}$ vértices e $m_{t}$ arestas, e a probabilidade de um vértice ter $k$ nós segue uma distribuição de Lei da Potência com $\gamma \approx 3$
 \end{enumerate}
 
-\indent Como consequência direta deste mecanismo, emerge uma propriedade importante das redes livres de escala que é a formação de \textit{hubs}, isto é, nós super conectados que dominam a conectividade global do sistema. Esse fenômeno vem acompanhado também da formação de estruturas de pequeno mundo. Devido à inerente natureza de concentração de conexões desse \textit{hubs}, eles acabam servindo como atalhos eficientes entre nós \parencite{wang2003}.
+Como consequência direta deste mecanismo, emerge uma propriedade importante das redes livres de escala que é a formação de \textit{hubs}, isto é, nós super conectados que dominam a conectividade global do sistema. Esse fenômeno vem acompanhado também da formação de estruturas de pequeno mundo. Devido à inerente natureza de concentração de conexões desse \textit{hubs}, eles acabam servindo como atalhos eficientes entre nós \parencite{wang2003}.
 
 No entanto, vale acrescentar que nós mais antigos, isto é, que entraram primeiro no sistema, têm mais tempo para acumular conexões se tornando inevitavelmente \textit{hubs} no contexto da rede. Esta limitação ficou conhecida como Vantagem do Pioneiro e foi formalizada matematicamente em artigo posterior por \textcite{barabasi1999b} ao descreverem a lei de crescimento do grau dos nós em nível microscópico, dada por:
 
@@ -281,14 +281,14 @@ Os autores também discutem sobre a limitação da ligação preferencial assumi
   \item Então, o modelo assume implicitamente $\alpha = 1$
 \end{itemize}
 
-\indent O que acontece quando $\alpha \neq 1$, segundo os autores:
+O que acontece quando $\alpha \neq 1$, segundo os autores:
 
 \begin{enumerate}
   \item Ligação sublinear ($\alpha < 1$):  a preferência pelos nós mais conectados ainda existe, mas é matematicamente fraca. À medida que a rede cresce, os nós maiores não conseguem acumular conexões a uma taxa suficientemente rápida para se destacarem. O resultado é que a formação de \textit{hubs }é suprimida e a distribuição de graus $P(k)$ deixa de seguir a Lei da Potência, passando a decair de forma exponencial, ou exponencial esticada, aproximando-se da topologia de um grafo aleatório clássico.
   \item Ligação superlinear ($\alpha > 1$): a tendência de ligação preferencial torna-se excessivamente agressiva. Cria-se um cenário extremo monopólio do nó vencedor, geralmente o mais antigo a entrar na rede, que adquire uma vantagem tão massiva que passa a absorver quase a totalidade de todas as novas arestas introduzidas no sistema. A rede perde o seu caráter distribuído e colapsa, adquirindo geometricamente o formato de uma "estrela", onde esse único super-nó centraliza o sistema e quebra a estabilidade da Lei de Potência.
 \end{enumerate}
 
-\indent Dessa forma, eles concluem que $\alpha = 1$ funciona como um ponto crítico de transição de fase, tornando o modelo rígido, e ao mesmo tempo matematicamente sensível, pois qualquer desvio de $\alpha$ altera o resultado produzido pelo modelo. \textcite{newman2010} critica o fato da Lei da Potência emergir como uma consequência específica do mecanismo de ligação preferencial ser estritamente linear e argumenta que embora a linearidade seja um bom “primeiro palpite” que possibilitou o desenvolvimento inicial da teoria, ele precisa ser substituído por modelos que considerem variáveis não lineares. Outra evidência da rigidez do modelo o expoente teórico fixo de $\gamma \approx 3$. Ao ajustar o modelo aos dados empíricos de diversas redes, os pesquisadores verificaram que havia uma dispersão do expoente entre 2.1 e 4 e propuseram correções mínimas para adequação.
+Dessa forma, eles concluem que $\alpha = 1$ funciona como um ponto crítico de transição de fase, tornando o modelo rígido, e ao mesmo tempo matematicamente sensível, pois qualquer desvio de $\alpha$ altera o resultado produzido pelo modelo. \textcite{newman2010} critica o fato da Lei da Potência emergir como uma consequência específica do mecanismo de ligação preferencial ser estritamente linear e argumenta que embora a linearidade seja um bom “primeiro palpite” que possibilitou o desenvolvimento inicial da teoria, ele precisa ser substituído por modelos que considerem variáveis não lineares. Outra evidência da rigidez do modelo o expoente teórico fixo de $\gamma \approx 3$. Ao ajustar o modelo aos dados empíricos de diversas redes, os pesquisadores verificaram que havia uma dispersão do expoente entre 2.1 e 4 e propuseram correções mínimas para adequação.
 
 Em suma, embora apresente limitações bastante discutidas, o modelo Barabási-Albert demonstra como uma rede livre de escala descrita pela Lei da Potência emerge a partir de um comportamento de auto-organização dirigido por decisões locais de cada nó em redes em crescimento contínuo. O modelo ofereceu particular contribuição em adaptar o modelo de \textcite{price1976} para redes que se comportam como grafos não-direcionados, o que era inviável pelas premissas do modelo de Price. Posteriormente, \textcite{newman2003} demonstrou que  o modelo Barabási-Albert é, em si, um caso especial simplificado do modelo de Price aplicável a grafos não-direcionados. É um modelo seminal que instituiu os fundamentos da ciência de redes modernas juntamente com o modelo de redes de pequeno mundo de Watts-\textcite{watts1998} e introduziu uma mudança de paradigma na análise de redes, pensando as redes como sistemas dinâmicos abertos ao invés de redes estáticas imutáveis com relação ao número de nós, como abordadas por Erdős e Rényi anteriormente \parencite{latora2017}. O modelo teve diversas variações notáveis propostas posteriormente pela comunidade científica, algumas das quais serão discutidas na sequência .
 
@@ -323,14 +323,14 @@ Os pesquisadores então validaram os resultados analíticos utilizando simulaç�
   \item A rede era expandida até atingir $N = 10^{6}$ nós para minimizar flutuações estatísticas e garantir que o comportamento assintótico de longo prazo pudesse ser medido com precisão.
 \end{enumerate}
 
-\indent O algoritmo descrito foi utilizado para testar dois cenários de distribuições $\rho(\eta)$:
+O algoritmo descrito foi utilizado para testar dois cenários de distribuições $\rho(\eta)$:
 
 \begin{enumerate}
   \item Distribuição uniforme: o objetivo era validar e confirmar os resultados analíticos sob condições normais de variação uniforme de aptidão entre os nós, comprovando o fenômenos do multi-escalonamento e validando a correção logarítmica na distribuição de graus.
   \item Distribuição exponencial: o objetivo deste cenário era testar os limites e a robustez do modelo, investigando o que aconteceria com a topologia da rede quando a aptidão dos nós apresentava um decaimento muito rápido, isto é, medir o nível de sensibilidade à distribuição da aptidão. Mas além disso, o objetivo também evidenciar que uma distribuição exponencial de aptidão forçaria a rede a abandonar a Lei da Potência, resultando em uma rede com distribuição de grau exponencial esticada.
 \end{enumerate}
 
-\indent As simulações confirmaram todos os resultados analíticos conforme previsto pelos autores e levaram à conclusão importante de que a introdução do parâmetro de aptidão foi capaz de alterar propriedades macroscópicas da rede. Isso foi comprovado pelos seguintes comportamentos observados:
+As simulações confirmaram todos os resultados analíticos conforme previsto pelos autores e levaram à conclusão importante de que a introdução do parâmetro de aptidão foi capaz de alterar propriedades macroscópicas da rede. Isso foi comprovado pelos seguintes comportamentos observados:
 
 \begin{itemize}
   \item O fenômeno de Vantagem do Pioneiro deu lugar à Vantagem do mais Apto: um novo nó dotado de uma aptidão mais alta crescerá a um ritmo mais acelerado, ultrapassando nós mais antigos  menos aptos.
@@ -340,7 +340,7 @@ Os pesquisadores então validaram os resultados analíticos utilizando simulaç�
   \item Topologia global da rede não é universal: a distribuição do parâmetro de aptidão é determinante na formação da topologia da rede conforme demonstraram as simulações
 \end{itemize}
 
-\indent Em artigo posterior, complementando o modelo proposto, \textcite{bianconi2001b}, propuseram que redes complexas competitivas poderiam ser descritas matematicamente como um gás quântico de Bose em equilíbrio termodinâmico. Os autores investigaram se fenômenos como a Vantagem do Pioneiro, a Vantagem do mais Apto e o Monopólio Absoluto (isto é, o monopólio de um nó vencedor) poderiam corresponder a fases termodinâmicas distintas e previsíveis pelos princípios da Física Estatística. Neste artigo os autores formulam um mapeamento entre os elementos de redes competitivas em crescimento e um gás de bósons e demonstram que o comportamento deles é matematicamente idêntico. Também reforçam a proposta do artigo anterior de que o comportamento dinâmico global da rede é governado pela distribuição de aptidão $\rho(\eta)$, estabelecendo um paralelo entre as fases termodinâmicas e as fases da rede, que, segundo eles, também são nitidamente demarcadas:
+Em artigo posterior, complementando o modelo proposto, \textcite{bianconi2001b}, propuseram que redes complexas competitivas poderiam ser descritas matematicamente como um gás quântico de Bose em equilíbrio termodinâmico. Os autores investigaram se fenômenos como a Vantagem do Pioneiro, a Vantagem do mais Apto e o Monopólio Absoluto (isto é, o monopólio de um nó vencedor) poderiam corresponder a fases termodinâmicas distintas e previsíveis pelos princípios da Física Estatística. Neste artigo os autores formulam um mapeamento entre os elementos de redes competitivas em crescimento e um gás de bósons e demonstram que o comportamento deles é matematicamente idêntico. Também reforçam a proposta do artigo anterior de que o comportamento dinâmico global da rede é governado pela distribuição de aptidão $\rho(\eta)$, estabelecendo um paralelo entre as fases termodinâmicas e as fases da rede, que, segundo eles, também são nitidamente demarcadas:
 
 \begin{itemize}
   \item Fase Livre de Escala (Vantagem do Pioneiro): Ocorre quando todos os nós possuem a mesma aptidão. O sistema tem as propriedades de uma rede livre de escala pura conforme o modelo Barabási-Albert clássico, onde os nós mais antigos dominam as conexões por terem se juntado à rede antes dos outros, mas ao mesmo tempo não há um nó antigo que domine muito mais do que os outros.
@@ -350,7 +350,7 @@ Os pesquisadores então validaram os resultados analíticos utilizando simulaç�
   \item Fase de Condensação de Bose-Einstein (Monopólio Absoluto): Se a distribuição de aptidão violar certas restrições de homogeneidade descritas pelos autores, emerge um vencedor absoluto com maior aptidão. O sistema sofre uma transição de fase quântica, e este nó isoladamente absorve uma fração macroscópica estável e finita de todas as conexões da rede, independentemente do tamanho que o sistema venha a adquirir, e da contínua emergência de novos nós competindo por conexões.
 \end{itemize}
 
-\indent Alguns autores, como \textcite{newman2003}, Xu, \textcite{xu2010}, no entanto, criticam as premissas assumidas por este modelo. Como a probabilidade de um novo nó se conectar a um nó existente depende do produto de aptidão e grau $(\eta_{i}k_{i})$, para que essa probabilidade seja calculada, se faz necessária uma normalização global sobre todos os nós da rede, o que assume implicitamente que o novo nó saberia de antemão os graus e aptidões de todos os nós existentes na rede.  Também criticam o fato da topologia final da rede ser altamente sensível à distribuição de aptidão, o que sugere uma fragilidade matemática do mecanismo formativo da rede. Estas duas questões, particularmente, motivaram os pesquisadores Xu, \textcite{xu2010} a introduzirem um modelo baseado em seleção mútua capaz de produzir redes livres de escala, ao passo que contornam essas limitações.
+Alguns autores, como \textcite{newman2003}, Xu, \textcite{xu2010}, no entanto, criticam as premissas assumidas por este modelo. Como a probabilidade de um novo nó se conectar a um nó existente depende do produto de aptidão e grau $(\eta_{i}k_{i})$, para que essa probabilidade seja calculada, se faz necessária uma normalização global sobre todos os nós da rede, o que assume implicitamente que o novo nó saberia de antemão os graus e aptidões de todos os nós existentes na rede.  Também criticam o fato da topologia final da rede ser altamente sensível à distribuição de aptidão, o que sugere uma fragilidade matemática do mecanismo formativo da rede. Estas duas questões, particularmente, motivaram os pesquisadores Xu, \textcite{xu2010} a introduzirem um modelo baseado em seleção mútua capaz de produzir redes livres de escala, ao passo que contornam essas limitações.
 
 \textcite{newman2003} ainda analisa que o fenômeno da Condensação de Bose-Einstein, na realidade, colapsa a estrutura típica de uma rede livre de escala e cria uma anomalia extrema (um “super-hub”) que raramente é observada nessa magnitude em redes empíricas estáveis.
 
@@ -376,14 +376,14 @@ Os autores então propõem uma extensão ao modelo de Barabási-Albert com a inc
   \item Com probabilidade $1 - P_{t}$, realiza-se em alternativa outro passo de ligação preferencial.
 \end{itemize}
 
-\indent Como resultados, os pesquisadores observaram os seguintes aspectos:
+Como resultados, os pesquisadores observaram os seguintes aspectos:
 
 \begin{itemize}
   \item A rede mantém a distribuição de grau seguindo a Lei da Potência, com expoente dinâmico $\gamma = 3$, comportamento igual ao modelo Barabási-Albert clássico
   \item O coeficiente de agrupamento converge para um valor finito e não nulo quando o número de nós da rede tende ao infinito e é linearmente ajustável pelo parâmetro $m_{t}$
   \item O comprimento médio do caminho entre nós cresce logaritmicamente com a quantidade de nós, preservando a característica de mundo pequeno.
 \end{itemize}
-\indent \textcite{newman2003}, em acordo com \textcite{latora2017}, defende que o modelo Holme-Kim conseguiu resolver com sucesso o problema original do modelo Barabási-Albert. A ideia central do mecanismo combinado de ligação preferencial e formação de tríades empregado é que novas arestas são formadas preferencialmente entre pares de nós que já compartilham um vizinho em comum, ocasionando o fechamento de triângulo de maneira sistemática. Este mecanismo preserva a propriedade livre de escala ao passo que cobre uma deficiência do modelo original. Além disso, ele observa que há evidências experimentais para esse mecanismo, particularmente em redes de colaboração científica, onde a probabilidade de dois pesquisadores formarem uma coautoria é significativamente maior quando já possuem um colaborador em comum.
+\textcite{newman2003}, em acordo com \textcite{latora2017}, defende que o modelo Holme-Kim conseguiu resolver com sucesso o problema original do modelo Barabási-Albert. A ideia central do mecanismo combinado de ligação preferencial e formação de tríades empregado é que novas arestas são formadas preferencialmente entre pares de nós que já compartilham um vizinho em comum, ocasionando o fechamento de triângulo de maneira sistemática. Este mecanismo preserva a propriedade livre de escala ao passo que cobre uma deficiência do modelo original. Além disso, ele observa que há evidências experimentais para esse mecanismo, particularmente em redes de colaboração científica, onde a probabilidade de dois pesquisadores formarem uma coautoria é significativamente maior quando já possuem um colaborador em comum.
 
 \subsection*{2.2. Modelos de Otimização Estrutural}\addcontentsline{toc}{subsection}{2.2. Modelos de Otimização Estrutural}
 Os modelos de otimização são uma alternativa aos mecanismos puramente estocásticos de crescimento.  Esses modelos se baseiam na ideia de que\textbf{ a }estrutura de uma rede resulta de um equilíbrio entre diferentes custos e benefícios \parencite{latora2017}. A origem desses modelos se deu a partir do trabalho de \textcite{mandelbrot1953}, que propôs em sua tese de doutorado que distribuições de Lei da Potência poderiam emergir a partir de soluções de problemas subjacentes de otimização, embora seu trabalho estivesse mais focado em propriedades estatísticas da linguagem escrita, e na otimização do total de informação transmitido por símbolo \parencite{dsouza2007}.
@@ -408,7 +408,7 @@ Os autores demonstram analiticamente que a minimização global sobre todos os n
   \item Conectar-se ao “pai” do vizinho: implica pular sobre o nó imediatamente à esquerda e conecta-se diretamente ao nó em que ele está conectado, com isso, economizando 1 salto em relação à raiz. Porém, deve-se pagar o pedágio pelo salto.
 \end{enumerate}
 
-\indent Nesse sentido, o nó não precisa ter todo o conhecimento da rede para decidir a quem se conectar. Os autores ainda explicam como a ligação preferencial emerge desta dinâmica: quando um nó "pai" tem poucos filhos, o espaço físico à direita dele está vazio. Novos nós que chegam naquela região preferem pagar um pedágio muito baixo, ou até mesmo zerado,  para se conectarem diretamente a ele, isto é, escolhem a opção (b), a fim de ganhar eficiência de rede. Isso faz com que esse pai ganhe cada vez mais conexões, enquanto seus filhos não recebem nada (denominados nós “inférteis” até então). O acúmulo de filhos à direita do pai leva a um limite crítico, dado por $1/\alpha$, revelando que o custo dos pedágios até ele se tornou alto demais, e assim ele pára de receber novas conexões. Nesse momento a opção (a) passa a ser mais barata, e os nós filhos, antes inférteis, passam a receber conexões, se tornando novos pais.
+Nesse sentido, o nó não precisa ter todo o conhecimento da rede para decidir a quem se conectar. Os autores ainda explicam como a ligação preferencial emerge desta dinâmica: quando um nó "pai" tem poucos filhos, o espaço físico à direita dele está vazio. Novos nós que chegam naquela região preferem pagar um pedágio muito baixo, ou até mesmo zerado,  para se conectarem diretamente a ele, isto é, escolhem a opção (b), a fim de ganhar eficiência de rede. Isso faz com que esse pai ganhe cada vez mais conexões, enquanto seus filhos não recebem nada (denominados nós “inférteis” até então). O acúmulo de filhos à direita do pai leva a um limite crítico, dado por $1/\alpha$, revelando que o custo dos pedágios até ele se tornou alto demais, e assim ele pára de receber novas conexões. Nesse momento a opção (a) passa a ser mais barata, e os nós filhos, antes inférteis, passam a receber conexões, se tornando novos pais.
 
 \textcite{latora2017} observam que, como efeito, a introdução do mecanismo de saturação acaba por limitar o ganho de conexões que um nó pode alcançar, o que não é uma limitação do modelo Barabási-Albert clássico. Este travamento por saturação também tem consequência direta na distribuição dos graus da rede, que deixa de se apresentar como uma Lei da Potência pura e linear em todas as escalas. O modelo produz uma rede livre de escala com expoente dinâmico $\gamma = 2$ para graus menores que o limiar de saturação e uma cauda exponencial para graus maiores, daí a opção pela denominação de “temperado” dado ao modelo pelos próprios autores.
 
@@ -422,14 +422,14 @@ Ferrer I \textcite{ferrericancho2003} introduziram um modelo que visa demonstrar
   \item Economia de recursos: redes na natureza tendem a ser esparsas para minimizar a quantidade de energia despendida em manter as conexões ativas. Implica na minimização da densidade normalizada de conexões entre os nós ($\rho$).
 \end{enumerate}
 
-\indent Matematicamente, estas medidas de custo são definidas da seguinte forma:
+Matematicamente, estas medidas de custo são definidas da seguinte forma:
 
 \begin{itemize}
   \item Distância média normalizada entre nós ($d$): Este cálculo ocorre em duas etapas. Primeiro, calcula-se a distância média para todos os pares de nós da rede ($D$), depois, para que este valor fique na mesma escala que a densidade de conexões, normaliza-se este valor ($d$).
   \item Distância média ($D$): é soma das distâncias mínimas entre todos os pares de nós da rede, dividida pela combinação de todos os pares possíveis, dada por:
 \end{itemize}
 
-\indent $D = \frac{\sum_{i<j} D_{ij}}{\,n(n-1)/2\,}$ onde \\$D_{ij}$ é o caminho mais curto (distância mínima) entre $n$ e $j$.
+$D = \frac{\sum_{i<j} D_{ij}}{\,n(n-1)/2\,}$ onde \\$D_{ij}$ é o caminho mais curto (distância mínima) entre $n$ e $j$.
 
 \begin{itemize}
   \item Distância normalizada ($d$): Os autores normalizam $D$ pela distância máxima que uma rede pode assumir, que é a distância de um grafo linear, onde:
@@ -462,7 +462,7 @@ Em seguida, é empregado um algoritmo evolucionário com o propósito de iterar 
   \item O algoritmo converge se nenhuma mudança for aceita após $T$ tentativas.
 \end{itemize}
 
-\indent Para avaliar a distribuição de graus produzida pelo modelo, os autores empregaram uma medida de entropia de grau, que é matematicamente definida como a entropia de Shannon:
+Para avaliar a distribuição de graus produzida pelo modelo, os autores empregaram uma medida de entropia de grau, que é matematicamente definida como a entropia de Shannon:
 
 \[H(p_{k}) = -\sum_{k=1}^{n-1} p_{k}\log p_{k}\]
 
@@ -501,7 +501,7 @@ Essa medida visa fazer uma razão do quanto a rede se aproximou da distância m�
   \item Densa
 \end{enumerate}
 
-\indent O Grafo em estrela desponta como rede com a maior eficiência de comunicação porque apresenta a mínima distância possível entre todos os pares de nós, enquanto que a rede densa assumiu o custo mais alto de conexões possível, embora a distância seja mínima. No caso da Lei da Potência truncada, ela se aproxima da eficiência da estrela, dado que os \textit{hubs }reduzem drasticamente as distâncias médias, mas exige assumir um pouco mais de conexões para manter a conectividade entre eles. Já a Exponencial não tem hubs dominantes, então a distância média é substancialmente maior. A rede precisa de mais conexões para manter a conectividade ou aceita distância maiores, e em ambos os casos perde eficiência.
+O Grafo em estrela desponta como rede com a maior eficiência de comunicação porque apresenta a mínima distância possível entre todos os pares de nós, enquanto que a rede densa assumiu o custo mais alto de conexões possível, embora a distância seja mínima. No caso da Lei da Potência truncada, ela se aproxima da eficiência da estrela, dado que os \textit{hubs }reduzem drasticamente as distâncias médias, mas exige assumir um pouco mais de conexões para manter a conectividade entre eles. Já a Exponencial não tem hubs dominantes, então a distância média é substancialmente maior. A rede precisa de mais conexões para manter a conectividade ou aceita distância maiores, e em ambos os casos perde eficiência.
 
 Porém, se essa listagem refletisse a realidade, redes em formato de estrelas seriam observadas na natureza, o que não acontece. Os autores explicam essa aparente contradição argumentando primeiramente que a evolução topológica em sistemas naturais ocorre em espaço que não é livre de ruído, sujeita a mutações e deriva genética que introduzem variabilidade que dificulta a convergência para uma estrutura tão rígida e determinística quanto a estrela. Mas o argumento principal é que a estrela é uma estrutura frágil. Em sistemas biológicos e naturais, o mecanismo de homeostase é fundamental para manter as funções do organismo mesmo após perturbações. Essa mesma necessidade pode ser traduzida para outros sistemas sociais ou técnicos. Em decorrência disso, porque a estrela concentra todas as conexões em um único \textit{hub}, um ataque direcionado a ele não incorreria simplesmente em uma disrupção profunda da rede, mas em uma fragmentação total e completa dela. Dessa forma, a estrutura de rede livre de escala aparece como uma alternativa mais viável e robusta em relação à estrela.
 
@@ -516,7 +516,7 @@ Souza, \textcite{souza2012} analisam o modelo proposto por esses autores contras
   \item Dependência de uma condição inicial aleatória: A distribuição de Poisson do grau que inicializa a matriz de adjacência é uma realização aleatória, não é um ponto de partida determinístico e estruturado, o que implica numa falta de controle sobre a topologia inicial.
 \end{itemize}
 
-\indent Para Souza, \textcite{souza2012}, o modelo proposto por esses autores tem os méritos de demonstrar que a otimização pode produzir topologias complexas sem recorrer ao mecanismo de crescimento, ao passo que incorpora critérios fundamentais de engenharia na função objetivo e como a variação da importância entre eles molda a topologia da rede. Além disso, destacam a contribuição de conseguirem explicar o expoente dinâmico $\gamma = 3$ sem recorrer exclusivamente à aleatoriedade. Então, considerando esses pontos, estes autores avaliam que o modelo proposto é valioso como prova de conceito, mas carece de propriedades desejáveis para a engenharia de redes reais.
+Para Souza, \textcite{souza2012}, o modelo proposto por esses autores tem os méritos de demonstrar que a otimização pode produzir topologias complexas sem recorrer ao mecanismo de crescimento, ao passo que incorpora critérios fundamentais de engenharia na função objetivo e como a variação da importância entre eles molda a topologia da rede. Além disso, destacam a contribuição de conseguirem explicar o expoente dinâmico $\gamma = 3$ sem recorrer exclusivamente à aleatoriedade. Então, considerando esses pontos, estes autores avaliam que o modelo proposto é valioso como prova de conceito, mas carece de propriedades desejáveis para a engenharia de redes reais.
 
 \section*{3. Modelagem Baseada em Agentes}\addcontentsline{toc}{section}{3. Modelagem Baseada em Agentes}
 \subsection*{3.1. Conceitos Fundamentais}\addcontentsline{toc}{subsection}{3.1. Conceitos Fundamentais}
@@ -530,7 +530,7 @@ Souza, \textcite{souza2012} analisam o modelo proposto por esses autores contras
   \item A abordagem da Física Estatística é frequentemente formulada em termos de equações diferenciais parciais que assumem que as densidades populacionais são funções suaves do espaço. A ABM é formulada em termos de redes de autômatos, que são sistemas dinâmicos totalmente discretos no estado, espaço e tempo.
 \end{itemize}
 
-\indent Dessa forma, a ABM se apresenta como uma abordagem “de baixo para cima” (do indivíduo para os agregados), enquanto a abordagem da Física Estatística seria, em oposição “de cima para baixo” (do agregado para os indivíduos).
+Dessa forma, a ABM se apresenta como uma abordagem “de baixo para cima” (do indivíduo para os agregados), enquanto a abordagem da Física Estatística seria, em oposição “de cima para baixo” (do agregado para os indivíduos).
 
 \textcite{wilensky2015} ainda acrescentam que a proposta da ABM é a de que a maioria dos fenômenos pode ser modelada efetivamente por meio de três elementos: agentes, um ambiente e as descrições de interação. Esses elementos são coordenados por um cronograma, que dita a ordem em que as ações ocorrem (de modo sequencial ou paralelo). Os elementos são descritos em maior detalhe a seguir, conforme apontados pelos autores:
 
@@ -545,7 +545,7 @@ Souza, \textcite{souza2012} analisam o modelo proposto por esses autores contras
   \item Ambiente-Ambiente: Interações entre partes do próprio ambiente, como a difusão de calor ou de feromônios entre células vizinhas
 \end{itemize}
 
-\indent Provida desses componentes, a ABM se tornou uma ferramenta poderosa para simulações que viabilizou o estudo de diversos fenômenos, inclusive no domínio da Ciência de Redes, como será discutido a seguir.
+Provida desses componentes, a ABM se tornou uma ferramenta poderosa para simulações que viabilizou o estudo de diversos fenômenos, inclusive no domínio da Ciência de Redes, como será discutido a seguir.
 
 \subsection*{3.2. Aplicações na Ciência de Redes}\addcontentsline{toc}{subsection}{3.2. Aplicações na Ciência de Redes}
 Sobre as aplicações da ABM na ciência de redes, \textcite{namatame2016} elucidam que uma grande variedade de fenômenos já foi explorada por esta abordagem que se divide fundamentalmente, segundo eles, entre o estudo da “dinâmica \textit{nas }redes” e da “dinâmica \textit{das} redes”. Na primeira abordagem, a rede é tratada de forma exógena, isto é, tem estrutura fixa, funcionando como uma plataforma pré definida sobre a qual ocorrem os processos de interação. Já na segunda, a rede é endógena, ou seja, que evolui e se transforma ao longo do tempo como um resultado direto das decisões dos agentes. Essa distinção é vital para a ABM porque define o papel da estrutura sobre o modelo: se ela atua como um cenário estático que condiciona o comportamento individual, ou se representa um resultado dinâmico das interações entre os agentes. Em termos de aplicação, modelos exógenos são ideais para investigar como diferentes topologias impactam o sistema, enquanto a abordagem endógena é utilizada como um algoritmo de formação para descobrir as origens e a coevolução da estrutura e agentes.
@@ -569,7 +569,7 @@ Além disso, embora Boccara tenha considerado as redes de autômatos como uma á
   \item Classe IV (No Limiar do Caos): Padrões complexos e ordenados que emergem e desaparecem de forma irregular
 \end{itemize}
 
-\indent Os autores defendem que as classes III e IV são frequentemente referidas como computacionalmente irredutíveis, implicando que as propriedades do sistema não podem ser ser conhecidas \textit{ex ante}. A única maneira de descobrir o estado futuro ou emergente do sistema é por meio da execução da simulação passo-a-passo, calculando todas as interações intermediárias. Na prática, isso significa que a evolução do sistema não pode ser prevista por meio de atalhos analíticos, isto é, fórmulas ou equações que simplifiquem o funcionamento do sistema. Além disso, os autores conjecturam que a probabilidade de encontrar sistemas que se enquadrem nas classificações III e IV aumenta significativamente em sistemas sociais complexos porque a interação entre os agentes gera novas informações que influenciam os passos seguintes, e, portanto, não apresentariam solução matemática fechada. Assim, eles posicionam a ABM como a alternativa mais viável para modelar sistemas que não podem ser resolvidos analiticamente.
+Os autores defendem que as classes III e IV são frequentemente referidas como computacionalmente irredutíveis, implicando que as propriedades do sistema não podem ser ser conhecidas \textit{ex ante}. A única maneira de descobrir o estado futuro ou emergente do sistema é por meio da execução da simulação passo-a-passo, calculando todas as interações intermediárias. Na prática, isso significa que a evolução do sistema não pode ser prevista por meio de atalhos analíticos, isto é, fórmulas ou equações que simplifiquem o funcionamento do sistema. Além disso, os autores conjecturam que a probabilidade de encontrar sistemas que se enquadrem nas classificações III e IV aumenta significativamente em sistemas sociais complexos porque a interação entre os agentes gera novas informações que influenciam os passos seguintes, e, portanto, não apresentariam solução matemática fechada. Assim, eles posicionam a ABM como a alternativa mais viável para modelar sistemas que não podem ser resolvidos analiticamente.
 
 No mesmo sentido, \textcite{azadi2025} aprofunda a discussão ao demonstrar que a agência autônoma possui fundamento formal na teoria da computação, e prova, por meio de três teoremas, que a autonomia genuína é um fenômeno que emerge necessariamente das restrições computacionais, implicando na intratabilidade analítica:
 
@@ -579,7 +579,7 @@ No mesmo sentido, \textcite{azadi2025} aprofunda a discussão ao demonstrar que 
   \item Por fim, o terceiro teorema prova que a indecidibilidade é formalmente equivalente à irredutibilidade computacional. Ele estabelece que para toda propriedade do comportamento de um sistema que é indecidível, existe uma evolução do estado do sistema que é computacionalmente irredutível.
 \end{itemize}
 
-\indent Dessa forma, o autor demonstra formalmente que para sistemas autônomos, e, por extensão para a ABM, a previsão de estados futuros é analiticamente intratável.
+Dessa forma, o autor demonstra formalmente que para sistemas autônomos, e, por extensão para a ABM, a previsão de estados futuros é analiticamente intratável.
 
 O trabalho desses autores fornece arcabouço teórico para evidenciar que a simulação computacional não é uma escolha metodológica de conveniência, mas a alternativa mais viável para replicar a estrutura computacional que gera o comportamento autônomo, respeitando os limites formais de computabilidade que definem a própria realidade do sistema. No entanto, há considerações epistemológicas que precisam ser observadas ao abordar um fenômeno por meio da ABM, conforme será discutido a seguir:
 
@@ -646,7 +646,7 @@ Originalmente, os LLMs foram propostos como modelos de linguagem capazes de comp
   \item Raciocínio em múltiplas etapas: capacidade de resolver tarefas complexas decompondo o raciocínio em múltiplos passos. Técnicas de \textit{prompting} como \textit{Chain-of-Thought} (CoT) estimulam a capacidade de raciocínio do modelo e permitem que ele avalie caminhos alternativos, antecipe cenários, e formule planos estruturados antes da execução.
 \end{itemize}
 
-\indent Além do surgimento dessas capacidades, os autores apontam a interação via \textit{prompting} como uma característica notável que diferencia os LLMs dos PLMs, seus antecessores. Na abordagem anterior, a proposta era adaptar os pesos de um modelo pré-treinado via técnica de \textit{fine-tuning}, a fim de que ele atendesse a tarefas específicas. Já nos LLMs isso não é necessário. A interação principal ocorre por meio de \textit{prompts}, escritos em linguagem natural, e isso é suficiente para que os LLMs desempenhem funções específicas.
+Além do surgimento dessas capacidades, os autores apontam a interação via \textit{prompting} como uma característica notável que diferencia os LLMs dos PLMs, seus antecessores. Na abordagem anterior, a proposta era adaptar os pesos de um modelo pré-treinado via técnica de \textit{fine-tuning}, a fim de que ele atendesse a tarefas específicas. Já nos LLMs isso não é necessário. A interação principal ocorre por meio de \textit{prompts}, escritos em linguagem natural, e isso é suficiente para que os LLMs desempenhem funções específicas.
 
 \textcite{zhao2023} constatam que tais capacidades emergentes que diferenciam os LLMs do PLMs são fenômenos que surgem como uma transição de fase ao escalar a quantidade de parâmetros do modelo. Dessa forma, pode ser interpretado que os LLMs apresentam características marcantes de um sistema complexo.
 
@@ -661,13 +661,13 @@ Todavia os LLMs também apresentam limitações importantes que merecem a devida
   \item Alucinação: Como funcionam por meio de previsão probabilística, LLMs não têm uma noção inerente de factualidade e podem fabricar conteúdo verossímil mas factualmente incorreto, infundado, especulativo ou desalinhado ao contexto.
 \end{itemize}
 
-\indent Os autores destacam que o fenômeno da alucinação tem diversas implicações e por isso foi alvo do interesse popular. Conceitualmente, \textcite{ji2023} definem alucinação como “a geração de conteúdo sem sentido ou infiel à fonte fornecida” e a categorizam em dois tipos:
+Os autores destacam que o fenômeno da alucinação tem diversas implicações e por isso foi alvo do interesse popular. Conceitualmente, \textcite{ji2023} definem alucinação como “a geração de conteúdo sem sentido ou infiel à fonte fornecida” e a categorizam em dois tipos:
 
 \begin{enumerate}
   \item Alucinação intrínseca: ocorre quando o conteúdo gerado apresenta conflito direto com o texto de origem, introduzindo imprecisões factuais ou inconsistências lógicas
   \item Alucinação extrínseca: ocorre quando o conteúdo gerado não pode ser verificado pelo texto de origem. Isso inclui informações que podem até ser verdadeiras no mundo real, mas não foram mencionadas na fonte, podendo até mesmo serem totalmente fabricadas pelo modelo.
 \end{enumerate}
-\indent \textcite{zhao2023} explicam que as principais causas da alucinação estão distribuídas nas fases de treinamento e uso do modelo, podendo ser originadas de fatores como qualidade da base de treinamento (informações incompletas, incorretas ou enviesadas), problemas nos métodos de treinamento (por exemplo, perda de dependências de longo alcance), inferência com parâmetro de temperatura alta, ou viés de adulação (tendência sistemática de agradar o usuário).
+    \textcite{zhao2023} explicam que as principais causas da alucinação estão distribuídas nas fases de treinamento e uso do modelo, podendo ser originadas de fatores como qualidade da base de treinamento (informações incompletas, incorretas ou enviesadas), problemas nos métodos de treinamento (por exemplo, perda de dependências de longo alcance), inferência com parâmetro de temperatura alta, ou viés de adulação (tendência sistemática de agradar o usuário).
 
 \subsection*{4.4. Agentes de Inteligência Artificial}\addcontentsline{toc}{subsection}{4.4. Agentes de Inteligência Artificial}
 O conceito clássico de Agente de Inteligência Artificial foi proposto por \textcite{russell1995} e é definido como qualquer sistema que pode perceber o seu ambiente por meio de sensores e agir sobre ele por meio de atuadores. Contudo, \textcite{xi2023} pontuam que desde a introdução do conceito por esses autores, os agentes evoluíram de sistemas tradicionais baseados em regras rígidas ou algoritmos restritos para sistemas onde o LLM atua como o controlador ou “cérebro” da solução, sendo agora denominados agentes generativos. Os autores ainda oferecem uma definição contemporânea desse conceito: um agente de IA é um sistema computacional autônomo projetado para perceber o ambiente, tomar decisões e executar ações de forma orientada a objetivos, operando com grau variável de independência em relação a intervenções humanas diretas. \textcite{wang2023} defendem que o que habilita os agentes generativos a funcionarem dessa forma são justamente as capacidades emergentes dos LLMs. A compreensão de linguagem natural, coerência de diálogo e raciocínio simbólico são fatores-chave para que os LLMs possam atuar como motor central de tomada de decisão.
@@ -697,7 +697,7 @@ O conceito clássico de Agente de Inteligência Artificial foi proposto por \tex
   \end{itemize}
 \end{enumerate}
 
-\indent É importante acrescentar que a operação do agente não é unidirecional, isto é, ao executar o módulo de Ação não necessariamente encerra-se o ciclo de funcionamento do agente.  Após a execução de qualquer ação, há uma mudança no estado do ambiente. Essa mudança é imediatamente captada pelo módulo de Percepção, que reenvia os resultados de volta ao Cérebro. Isso gera um ciclo contínuo: o agente age, observa o impacto do que fez, reflete se o resultado foi um sucesso ou um erro de execução, e ajusta seu planejamento para tentar uma nova ação, até atingir a conclusão do objetivo da tarefa. Esse ciclo de atuação do agente é o que o constitui o paradigma \textit{ReAct }proposto por \textcite{yao2022}.
+É importante acrescentar que a operação do agente não é unidirecional, isto é, ao executar o módulo de Ação não necessariamente encerra-se o ciclo de funcionamento do agente.  Após a execução de qualquer ação, há uma mudança no estado do ambiente. Essa mudança é imediatamente captada pelo módulo de Percepção, que reenvia os resultados de volta ao Cérebro. Isso gera um ciclo contínuo: o agente age, observa o impacto do que fez, reflete se o resultado foi um sucesso ou um erro de execução, e ajusta seu planejamento para tentar uma nova ação, até atingir a conclusão do objetivo da tarefa. Esse ciclo de atuação do agente é o que o constitui o paradigma \textit{ReAct }proposto por \textcite{yao2022}.
 
 Outros autores tecem observações importantes sobre os componentes dessa arquitetura:
 
@@ -711,7 +711,8 @@ A fim de sistematizar a atuação do agente, \textcite{wang2023} organizam o mó
   \item Espaço de ação: Define o conjunto de ferramentas e capacidades disponíveis para o agente executar a ação. É composto pelo conhecimento interno do LLM e a disponibilidade de ferramentas externas para executar a ação.
   \item Impacto da ação: Refere-se às consequências e transformações geradas após a execução da ação. Uma ação pode causar alterações no ambiente, isto é, no mundo externo ao agente, mas também em estados internos do próprio agente (fluxo de memória, formulação de novas reflexões ou revisões de crenças e planos), além de poder desencadear o disparo de novas ações subsequentes.
 \end{enumerate}
-\indent \textcite{zhao2023} discutem sobre a capacidade do agente em manter memórias de curto e de longo prazo: A arquitetura dos LLMs em si foi projetada para não guardar o estado entre chamadas isoladas porque o custo computacional resultante disso seria altamente inviável \parencite{oren2024}, isto implica que cada interação com o LLM é um evento independente e isolado, sem memória residual alguma da interação anterior \parencite{tang2026}. Porém, isso gera uma consequência indesejada para o usuário que com ela interage: como a interação contínua não implica em acúmulo de contexto, é como se o interlocutor sofresse de uma amnésia constante. Os mecanismos de memória contornam isso porque residem nos agentes e servidores que encapsulam as interações com o LLM. Estes sistemas se utilizam de artifícios como bancos de dados externos e persistência em memória de curta duração para manter tanto a memória de trabalho (janela de contexto da sessão de conversa corrente), quanto de longo prazo (históricos de interações passadas), conforme discutidos também por \textcite{xu2026}.
+
+\textcite{zhao2023} discutem sobre a capacidade do agente em manter memórias de curto e de longo prazo: A arquitetura dos LLMs em si foi projetada para não guardar o estado entre chamadas isoladas porque o custo computacional resultante disso seria altamente inviável \parencite{oren2024}, isto implica que cada interação com o LLM é um evento independente e isolado, sem memória residual alguma da interação anterior \parencite{tang2026}. Porém, isso gera uma consequência indesejada para o usuário que com ela interage: como a interação contínua não implica em acúmulo de contexto, é como se o interlocutor sofresse de uma amnésia constante. Os mecanismos de memória contornam isso porque residem nos agentes e servidores que encapsulam as interações com o LLM. Estes sistemas se utilizam de artifícios como bancos de dados externos e persistência em memória de curta duração para manter tanto a memória de trabalho (janela de contexto da sessão de conversa corrente), quanto de longo prazo (históricos de interações passadas), conforme discutidos também por \textcite{xu2026}.
 
 A arquitetura aqui discutida elucida o funcionamento cognitivo e computacional no nível do agente individual. Contudo, na modelagem de Sistemas Complexos, com frequência o interesse do pesquisador está no entendimento dos comportamentos emergentes de sistemas multi-agentes. É nesse contexto que o cruzamento entre agentes generativos e a ABM tradicional podem se complementar.
 
@@ -736,7 +737,7 @@ A metodologia proposta para a presente pesquisa contempla uma simulação comput
   \item \textbf{Atividade mínima}: Há repositórios que são criados e abandonados imediatamente apenas para teste ou reserva do nome do repositório. São essencialmente repositórios sem conteúdo semântico real útil para avaliação. Portanto, será necessário estabelecer um critério de atividade mínima. A atividade do repositório normalmente é definida pelo número de \textit{commits}, isto é, gravações na linha do tempo do repositório de mudanças feitas em um ou mais arquivos \parencite{github_about_commits, github2025}. O critério inicial adotado é de pelo menos 2 commits nos primeiros 30 dias desde a criação do repositório. Isto porque o GitHub permite adicionar automaticamente um arquivo README de documentação do repositório no ato de criação, gerando automaticamente o primeiro \textit{commit}.
 \end{itemize}
 
-\indent Considerando o escopo e a natureza dos dados a serem coletados, o processo de coleta, tratamento, e análise dos dados foi dividido em 4 etapas:
+Considerando o escopo e a natureza dos dados a serem coletados, o processo de coleta, tratamento, e análise dos dados foi dividido em 4 etapas:
 
 \begin{itemize}
   \item \textbf{Fase I: Extração de dados}:  nesta fase o objetivo é construir a base de dados preliminar da análise, e contempla extrações do GH Archive complementadas com metadados dos repositórios extraídos da API oficial do GitHub, e mineração de dados de temas técnicos em alta a partir do próprio GitHub ou redes sociais como Reddit

@@ -21,11 +21,11 @@ critérios de validação).
 
 | Caminho | Conteúdo |
 | --- | --- |
-| `docs/plano.md` | resumo do plano e pergunta |
-| `docs/revisao-metodologia.md` | revisão com bloqueadores e recomendações |
-| `docs/latex/plano-abnt.tex` | **versão atual do texto** (abntex2) |
-| `docs/latex/refs.bib` | **bibliografia BibTeX** (133 entradas, estilo `abntex2cite alf`) |
-| `docs/latex/plano-abnt.pdf` | PDF compilado |
+| `docs/plano/plano.md` | resumo do plano e pergunta |
+| `docs/plano/revisao-metodologia.md` | revisão com bloqueadores e recomendações |
+| `docs/plano/latex/plano-abnt.tex` | **versão atual do texto** (abntex2) |
+| `docs/plano/latex/refs.bib` | **bibliografia BibTeX** (133 entradas, estilo `abntex2cite alf`) |
+| `docs/plano/latex/plano-abnt.pdf` | PDF compilado |
 | `code/` | pipeline: `docx_to_latex_v2.py`, `eq_map.py`, `build_abnt.py`, `convert_docs_to_latex.py` |
 | `data/raw/`, `data/processed/` | dados GH Archive / base filtrada (não commitar arquivos grandes) |
 | `results/figures/`, `results/tables/` | saídas verificáveis |
@@ -34,7 +34,7 @@ critérios de validação).
 
 ## Escrevendo e citando (biblatex-abnt + biber)
 
-- Texto em `docs/latex/plano-abnt.tex`; referências em `docs/latex/refs.bib`.
+- Texto em `docs/plano/latex/plano-abnt.tex`; referências em `docs/plano/latex/refs.bib`.
 - **Regra de ouro (ABNT): só o ano entre parênteses → narrativa; autores também entre
   parênteses → MAIÚSCULAS** (`et al.` sempre minúsculo e itálico, automático):
   - Narrativa: `\textcite{chave}` → "Sobrenome (ano)". Ex.: `\textcite{barabasi1999}`
@@ -49,7 +49,7 @@ critérios de validação).
   `urldate` sempre ISO (`aaaa-mm-dd`).
 - Toda chave citada precisa existir no `.bib`, senão sai `[?]` no PDF.
 
-## Compilando (em `docs/latex/`)
+## Compilando (em `docs/plano/latex/`)
 
 ```sh
 pdflatex plano-abnt.tex; biber plano-abnt; pdflatex plano-abnt.tex; pdflatex plano-abnt.tex

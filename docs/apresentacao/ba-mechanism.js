@@ -27,7 +27,7 @@
     return targets;
   }
   function radius(degree) {
-    return Math.min(120, 3 + Math.pow(degree, 1.15) * 0.6);
+    return Math.min(120, 3 + Math.pow(degree, 1.3) * 0.8);
   }
   function colorFor(scale, degree) {
     var c = degree > 50 ? 50 : (degree < 1 ? 1 : degree);

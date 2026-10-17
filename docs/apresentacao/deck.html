@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub</title>
+<title>Emergência de Redes Livres de Escala com Agentes Semânticos </title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Crimson+Pro:wght@500;600;700&display=swap');
 :root{
@@ -33,7 +31,7 @@ button:focus-visible{outline:3px solid var(--color-ring);outline-offset:2px}
 .slide.active ul{flex:1;display:flex;flex-direction:column;justify-content:space-evenly}
 .slide.active .grid3,.slide.active .flow,.slide.active .question,.slide.active .endcard{margin-top:auto;margin-bottom:auto}
 @keyframes fade{from{opacity:0}to{opacity:1}}
-@media (prefers-reduced-motion: reduce){.slide.active{animation:none} *{transition:none}}
+@media (prefers-reduced-motion: reduce){.slide.active{animation:none} *{transition:none} .mghost.flash{animation:none}}
 h1,h2{font-family:'Crimson Pro',Georgia,serif;color:var(--color-foreground);margin:0 0 12px;line-height:1.08}
 h1{font-size:42px} h2{font-size:36px}
 h1::after,h2::after{content:"";display:block;width:76px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-violet),var(--accent-gold));margin-top:12px}
@@ -51,6 +49,8 @@ mark.hl2{background:linear-gradient(transparent 38%,rgba(109,80,196,.88) 38%,rgb
 .whybar{margin-top:14px;background:rgba(34,211,238,.07);border:1px solid var(--accent-cyan);border-radius:12px;padding:12px 18px;font-size:18px;line-height:1.5}
 .whybar strong{color:var(--accent-cyan)}
 .sub{font-size:21px;color:var(--color-secondary);line-height:1.4}
+.deffull{margin-top:12px;background:var(--color-muted);border:1px solid var(--color-border);border-left:6px solid var(--accent-sky);border-radius:12px;padding:12px 18px;font-size:19px;line-height:1.5}
+.deffull strong{color:var(--accent-sky)}
 .question{margin-top:20px;background:var(--color-muted);border-left:6px solid var(--color-accent);border-radius:12px;padding:16px 20px;font-size:21px;line-height:1.4}
 ul{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
 li{background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:14px 18px;font-size:20px;line-height:1.4}
@@ -93,6 +93,7 @@ ul.compact li{font-size:18px;padding:10px 16px}
 .baSplit{flex:1;min-height:0;display:flex;gap:14px;margin-top:12px}
 .baLeft{width:410px;flex:0 0 auto;min-height:0;display:flex;flex-direction:column;gap:12px}
 .baLeft.narrow{width:320px}
+.baLeft ul.compact li{font-size:16px}
 .readmeFig{flex:1;min-height:0;margin:12px 0 0;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .readmeFig img{flex:1;min-height:0;width:100%;object-fit:cover;object-position:top center;display:block}
 .readmeFig figcaption{flex:0 0 auto;font-size:12px;color:var(--color-muted-foreground);padding:6px 10px}
@@ -113,17 +114,88 @@ svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px s
 .flow{display:flex;gap:12px;align-items:stretch;margin-top:20px}
 .flow div{flex:1;background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:14px;text-align:center;font-size:18px}
 .flow .arrow{align-self:center;flex:0 0 auto;border:none;background:none;font-size:28px;color:var(--color-primary);padding:0 4px}
+.duo{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.duo .panel{background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:12px 18px;display:flex;flex-direction:column;min-height:0}
+.duo .panel h3{margin:0 0 6px;font-size:21px}
+.duo .panel p{margin:0 0 6px;font-size:17px;color:var(--color-muted-foreground)}
+.duo .panel ul{margin:0}
+.stage .slide .duo .panel ul.compact{flex:1;justify-content:center;gap:6px}
+.stage .slide .duo .panel ul.compact li{padding:6px 16px;font-size:17px}
+.morph{flex:1;min-height:0;display:grid;grid-template-columns:1fr 84px 1.25fr;gap:14px;margin-top:12px}
+.morph .zone{background:var(--color-muted);border:1px solid var(--color-border);border-radius:14px;padding:8px 12px;display:flex;flex-direction:column;gap:5px;min-height:0}
+.morph .zone h3{margin:0;font-size:20px}
+.morph .zone.gabm{border-top:5px solid var(--accent-violet)}
+.morph .zone.gabm h3{color:var(--accent-violet)}
+.morph .zone.sabm{border-top:5px solid var(--accent-cyan)}
+.morph .zone.sabm h3{color:var(--accent-cyan)}
+.morph .chips{display:flex;flex-direction:column;gap:6px;flex:1;justify-content:center}
+.mchip{background:var(--color-card);border:1px solid var(--color-border);border-radius:10px;padding:6px 10px;font-size:15px;color:var(--color-muted-foreground);margin:0}
+.mchip strong{color:var(--color-foreground)}
+.mchip.kept{border-color:var(--accent-emerald)}
+.mchip.kept strong{color:var(--accent-emerald)}
+.mghost{border:1px dashed var(--color-border);border-radius:10px;padding:6px 10px;font-size:15px;color:var(--color-muted-foreground);opacity:.55;margin:0}
+.mslot{position:relative}
+.mslot>.mchip{position:absolute;inset:0;margin:0}
+.mghost.flash{animation:ghostFlash .9s ease}
+@keyframes ghostFlash{0%,100%{opacity:.55}30%{opacity:1;border-color:var(--color-ring)}}
+.mchip.dropped{opacity:.45;border-style:dashed}
+.morph .sub2{border:1px dashed var(--color-border);border-radius:10px;padding:5px 8px;display:flex;flex-direction:column;gap:4px}
+.morph .sub2 h4{margin:0;font-size:14px}
+.morph .sub2.keep h4{color:var(--accent-emerald)}
+.morph .sub2.drop h4{color:var(--accent-gold)}
+.morph .sub2 .chips{min-height:30px}
+.morphMid{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.bigarrow{font-size:40px;color:var(--accent-gold);font-weight:700;line-height:1}
+#morphReplay{font-size:14px;padding:6px 12px}
+.morph .sub2.keep,.morph .sub2.drop{flex:1}
+.meter{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--color-muted-foreground);margin-top:auto}
+.meter .track{flex:1;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--accent-emerald),var(--accent-gold));border:1px solid var(--color-border);overflow:hidden;position:relative}
+#morphBar{position:absolute;top:0;right:0;bottom:0;width:0%;background:var(--color-muted)}
+.duo .win{border-top:5px solid var(--accent-emerald)}
+.stage .slide .duo .win h3,.stage .slide .duo .win li strong{color:var(--accent-emerald)}
+.duo .cost{border-top:5px solid var(--accent-gold)}
+.stage .slide .duo .cost h3,.stage .slide .duo .cost li strong{color:var(--accent-gold)}
 .endcard{margin-top:20px;background:var(--color-accent);color:#0B1220;border-radius:14px;padding:18px 22px;font-size:19px;line-height:1.5;font-weight:700}
 .slide.center{text-align:center;justify-content:center}
 .slide.center .sub{line-height:1.8}
 .hypo{font-family:'Crimson Pro',Georgia,serif;font-size:32px;line-height:1.45;color:var(--color-foreground);max-width:920px;margin:24px auto 0}
-@media (max-width:900px){h1{font-size:32px}h2{font-size:28px}.slide{padding:28px 24px}.stage{padding:12px 16px 0}.grid3{grid-template-columns:1fr}.steps{flex-direction:column}.stepArrow{transform:rotate(90deg)}li{font-size:18px}.flow{flex-direction:column}.flow .arrow{transform:rotate(90deg)}.brand{max-width:52vw;font-size:14px}.baGrid{grid-template-columns:1fr;gap:12px}#baPanel{min-height:160px}.baSplit{flex-direction:column}#baChart{display:none}.baDiagram{min-height:220px}}
+@media (max-width:900px){h1{font-size:32px}h2{font-size:28px}.slide{padding:28px 24px}.stage{padding:12px 16px 0}.grid3{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.morph{grid-template-columns:1fr}.steps{flex-direction:column}.stepArrow{transform:rotate(90deg)}li{font-size:18px}.flow{flex-direction:column}.flow .arrow{transform:rotate(90deg)}.brand{max-width:52vw;font-size:14px}.baGrid{grid-template-columns:1fr;gap:12px}#baPanel{min-height:160px}.baSplit{flex-direction:column}#baChart{display:none}.baDiagram{min-height:220px}}
+@media (max-height:820px){.slide{padding:20px 32px}h2{font-size:30px}.sub{font-size:18px}.qbox{padding:10px 14px;font-size:17px}.mchip,.mghost{padding:4px 10px;font-size:14px}.morph .chips{gap:4px}.morph .zone{padding:8px 10px;gap:4px}.morph .sub2{padding:4px 8px}.meter{font-size:12px}.duo .panel{padding:8px 14px}.duo .panel h3{margin-bottom:4px}.deffull{padding:10px 14px}.stage .slide .duo .panel ul.compact li{padding:4px 14px;font-size:16px}.stage .slide .duo .panel ul.compact{gap:3px}}
+@media (min-height:900px){.mchip,.mghost{padding:8px 12px;font-size:17px}.morph .chips{gap:8px}}
 </style>
-</head>
+<style>.lms-source-label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #e0e0e0;
+    color: #333;
+    border-radius: 10px;
+    padding: 4px 4px;
+    font-family: sans-serif;
+    font-size: 10px;
+    pointer-events: none;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style><style>.lms-source-label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #e0e0e0;
+    color: #333;
+    border-radius: 10px;
+    padding: 4px 4px;
+    font-family: sans-serif;
+    font-size: 10px;
+    pointer-events: none;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+</style></head>
 <body>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <header class="topbar">
-<div class="brand" title="Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub">Emergência de Redes Livres de Escala com Agentes Generativos de IA no GitHub</div>
+<div class="brand" title="Emergência de Redes Livres de Escala com Agentes Semânticos">Emergência de Redes Livres de Escala com Agentes Semânticos</div>
 <div class="controls">
 <button id="prevBtn" type="button" aria-label="Slide anterior">Anterior</button>
 <button id="nextBtn" type="button" class="primary" aria-label="Próximo slide">Próximo</button>
@@ -132,18 +204,18 @@ svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px s
 </header>
 <main class="stage" id="stage">
 
-<section class="slide active center" data-time="1:00" aria-label="Slide 1 de 10">
-<h1>Emergência de Redes Livres de Escala com Agentes Generativos de IA para Estudo de Popularidade de Repositórios GitHub</h1>
+<section class="slide active center" data-time="1:00" aria-label="Slide 1 de 11">
+<h1>Emergência de Redes Livres de Escala com Agentes Semânticos</h1>
 <p class="sub">Danilo Lindemberg Amorim<br>PPG Modelagem em Sistemas Complexos</p>
 <p>EACH-USP</p>
 </section>
 
-<section class="slide center" data-time="1:30" aria-label="Slide 2 de 10">
+<section class="slide center" data-time="1:30" aria-label="Slide 2 de 11">
 <h2>Pergunta de pesquisa</h2>
-<p class="hypo"><mark class="hl2">Agentes generativos de IA</mark> podem reproduzir padrões <mark class="hl2">livres de escala</mark> observados em redes complexas sem imposição de um <mark class="hl2">mecanismo formativo</mark>?</p>
+<p class="hypo"><mark class="hl2">Agentes semânticos de IA</mark> podem reproduzir padrões <mark class="hl2">livres de escala</mark> observados em redes complexas sem imposição de um <mark class="hl2">mecanismo formativo</mark>?</p>
 </section>
 
-<section class="slide" data-time="2:30" aria-label="Slide 3 de 10">
+<section class="slide" data-time="2:30" aria-label="Slide 3 de 11">
 <h2>Redes Complexas Livres de Escala</h2>
 <div class="baSplit">
 <div class="baLeft">
@@ -159,25 +231,25 @@ svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px s
 <div class="baBar"><span id="baStatus" aria-live="polite">Rede com 3 nós iniciais.</span><span id="baCount">0 nós</span><button id="baReplay" type="button">Rever</button></div>
 </section>
 
-<section class="slide" data-time="2:30" aria-label="Slide 4 de 10">
+<section class="slide" data-time="2:30" aria-label="Slide 4 de 11">
 <h2>GitHub como Rede Sociotécnica Livre de Escala</h2>
 <p class="sub">O GitHub é a maior plataforma de hospedagem de código-fonte de projetos de código aberto do mundo</p>
 <div class="baSplit">
 <div class="baLeft narrow">
 <ul class="compact">
-<li><strong>Rede sociotécnica</strong>: A interação entre nós devs e repos é indissociável e a caracteriza como uma única rede</li>
-<li><strong>Estrelas como <i>proxy</i> de popularidade</strong>: Devs mostram apreciação aos repos dando "estrelas" para eles</li>
-<li><strong>Livre de escala</strong>: Poucos repos com muitas estrelas e muitos repos com poucas ou nenhuma estrela</li>
+<li><strong>Rede sociotécnica multicamada</strong>: interações entre devs e repositórios formam um grafo bipartido de camadas indissociáveis</li>
+<li><strong>Estrelas como <i>proxy</i> de popularidade</strong>: Devs mostram apreciação aos repositórios dando "estrelas" para eles</li>
+<li><strong>Livre de escala</strong>: Poucos repositórios com muitas estrelas e muitos repositórios com poucas ou nenhuma estrela</li>
 </ul>
-<div class="qbox">Como modelar o crescimento de popularidade dos repositórios GitHub?</div>
 </div>
 <div class="baDiagram" role="img" aria-label="Grafo bipartido em D3: desenvolvedores à esquerda ligados por stars a repositórios reais à direita">
-<svg id="ghSvg" viewBox="0 0 620 440"></svg>
+<svg id="ghSvg" viewBox="0 0 620 440"><g><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path><path></path></g><g></g><defs></defs></svg>
 </div>
 </div>
+<div class="qbox">Como modelar o crescimento de popularidade dos repositórios GitHub?</div>
 </section>
 
-<section class="slide" data-time="2:00" aria-label="Slide 5 de 10">
+<section class="slide" data-time="2:00" aria-label="Slide 5 de 11">
 <h2>Modelagem Baseada em Agentes (ABM)</h2>
 <p class="sub">Modelagem computacional na qual um fenômeno é representado e analisado em termos de seus <strong>agentes individuais e das interações entre eles</strong></p>
 <div class="baSplit">
@@ -218,49 +290,107 @@ svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px s
 </div>
 </section>
 
-<section class="slide" data-time="1:00" aria-label="Slide 6 de 10">
+<section class="slide" data-time="1:00" aria-label="Slide 6 de 11">
 <h2>O agravante: README</h2>
 <figure class="readmeFull"><img src="media/readme-vscode.png" alt="Captura real da página do README do repositório microsoft/vscode"><figcaption>README real do microsoft/vscode (out/2026). Riqueza semântica que regra fixa não captura (Wang et al., 2023).</figcaption></figure>
 </section>
 
-<section class="slide" data-time="2:30" aria-label="Slide 7 de 10">
-<h2>Modelagem Baseada em Agentes <mark class="hl2">Generativos</mark> (GABM)</h2>
+<section class="slide" data-time="2:30" aria-label="Slide 7 de 11">
+<h2>1a alternativa: Modelagem Baseada em Agentes <mark class="hl2">Generativos</mark> (GABM)</h2>
 <p class="sub">Paradigma de simulação computacional que combina a ABM tradicional com <strong>Inteligência Artificial Generativa</strong>, particularmente <strong>Modelos de Linguagem de Grande Escala (LLMs)</strong>.</p>
-<div class="grid3">
-<div class="card"><span class="n">1</span><h3>LLM como cérebro</h3><p>Percebe, lembra, avalia e decide. Segue o padrão Percepção, Cérebro e Ação.</p></div>
-<div class="card"><span class="n">2</span><h3>Micro verossímil</h3><p>Afinidade temática, qualidade percebida e reputação em cada escolha.</p></div>
-<div class="card"><span class="n">3</span><h3>Aposta</h3><p>Os hubs emergem das decisões, sem regra imposta.</p></div>
+<div class="duo">
+<div class="panel win"><h3>O que ela entrega</h3>
+<ul class="compact">
+<li><strong>Avaliação semântica</strong> do texto de entrada.</li>
+<li><strong>Agentes críveis</strong> que decidem pelo contexto.</li>
+<li><strong>Senso comum</strong> e decisão próxima da humana.</li>
+<li><strong>Memória</strong> entre decisões.</li>
+<li><strong>Reflexão</strong> e planejamento.</li>
+<li><strong>Deliberação</strong> explícita.</li>
+<li><strong>Regras flexíveis</strong>, com menos viés do modelador.</li>
+</ul></div>
+<div class="panel cost"><h3>O que ela cobra</h3>
+<p>Cada decisão consome múltiplas inferências do LLM:</p>
+<ul class="compact">
+<li><strong>Custo computacional</strong> de milhares de decisões por rodada.</li>
+<li><strong>Custo financeiro</strong> de inferência paga por token.</li>
+<li><strong>Tempo</strong> de rodadas em horas, não minutos.</li>
+</ul></div>
 </div>
-<div class="whybar"><strong>Por que GABM e não ABM tradicional?</strong> Regras fixas bastam quando a decisão é simples. Dar star exige interpretar, julgar e ponderar: denso demais para se isso, faça aquilo.</div>
+<div class="qbox">Funciona, mas cobra caro por decisão. </div>
 </section>
 
-<section class="slide" data-time="2:30" aria-label="Slide 8 de 10">
-<h2>Observar, Simular, Comparar</h2>
-<div class="grid3">
-<div class="card"><span class="n">1</span><h3>Observar o real</h3><p>Coletar stars e contexto em janelas mensais, com representação semântica do conteúdo.</p></div>
-<div class="card"><span class="n">2</span><h3>Simular com agentes</h3><p>Agentes exploram o catálogo, montam lista curta e escolhem onde dar star.</p></div>
-<div class="card"><span class="n">3</span><h3>Comparar mundos</h3><p>Real contra simulado contra modelo clássico. Critérios: curva e mecanismo.</p></div>
+<section class="slide" data-time="1:00" aria-label="Slide 8 de 11">
+<h2>Proposta: Modelagem Baseada em Agentes <mark class="hl2">Semânticos</mark> (SABM)</h2>
+<p class="sub">Combinação da ABM tradicional com modelos de Decisão Sistema 1</p>
+<div class="deffull"><strong>Modelos de Decisão de Sistema 1 (DS1):</strong> uma classe de modelos de IA que nasceu com o objetivo de suportar os LLMs em micro-decisões rápidas, mas que adapta seu julgamento pelo contexto.</div>
+<div class="duo">
+<div class="panel cost"><h3>LLMs</h3>
+<ul class="compact">
+<li><strong>Generativo:</strong> produz conteúdo como saída</li>
+<li><strong>Retorna:</strong> uma sequência de tokens</li>
+<li><strong>Autoregressivo:</strong> cada token de saída é uma inferência que depende das anteriores</li>
+<li><strong>Maior latência e custo:</strong> devido a múltiplas inferências necessárias</li>
+<li><strong>Probabilístico: </strong> amostragem de tokens de saída dificulta reprodutibilidade do experimento</li>
+</ul></div>
+<div class="panel win"><h3>DS1</h3>
+<ul class="compact">
+<li><strong>Classificador:</strong> discrimina entre opções predeterminadas.</li>
+<li><strong>Retorna:</strong> score de probabilidade, ou escolha discreta</li>
+<li><strong>Não-autoregressivo:</strong> uma única inferência devolve a resposta.</li>
+<li><strong>Baixa latência e menor custo:</strong> economia gerada por uma única inferência</li>
+<li><strong>Probabilístico:</strong> porém altamente reproduzível por não realizar amostragem de tokens</li>
+</ul></div>
 </div>
+<div class="qbox">Um modelo mais enxuto para direcionar a decisão do agente</div>
 </section>
 
-<section class="slide" data-time="2:30" aria-label="Slide 9 de 10">
-<h2>Por que isso importa</h2>
-<ul>
-<li><strong>Científico.</strong> Testa mecanismo, não só ajuste de curva.</li>
-<li><strong>Metodológico.</strong> Mostra se o modelo decide de forma verossímil ou só imita padrão.</li>
-<li><strong>Prático.</strong> Explica concentração de atenção e ajuda a discutir descoberta justa.</li>
-<li><strong>Atualidade.</strong> Validação de simulação generativa é o desafio central em 2025 e 2026.</li>
-</ul>
+<section class="slide" data-time="1:30" aria-label="Slide 9 de 11" id="morphSlide">
+<h2>Proposta: Modelagem Baseada em Agentes <mark class="hl2">Semânticos</mark> (SABM)</h2>
+<p class="sub">Combinação da ABM tradicional com modelos de Decisão Sistema 1</p>
+<div class="morph" id="morphGrid">
+<div class="zone gabm"><h3>GABM</h3>
+<div class="chips" id="morphLeft">
+<div class="mslot"><div class="mghost">Avaliação semântica</div><div class="mchip" data-to="keep"><strong>Avaliação semântica</strong></div></div>
+<div class="mslot"><div class="mghost">Agentes críveis</div><div class="mchip" data-to="keep"><strong>Agentes críveis</strong></div></div>
+<div class="mslot"><div class="mghost">Senso comum e decisão humana</div><div class="mchip" data-to="keep"><strong>Senso comum</strong> e decisão humana</div></div>
+<div class="mslot"><div class="mghost">Memória</div><div class="mchip" data-to="drop"><strong>Memória</strong></div></div>
+<div class="mslot"><div class="mghost">Reflexão e planejamento</div><div class="mchip" data-to="drop"><strong>Reflexão</strong> e planejamento</div></div>
+<div class="mslot"><div class="mghost">Deliberação explícita</div><div class="mchip" data-to="drop"><strong>Deliberação</strong> explícita</div></div>
+<div class="mslot"><div class="mghost">Regras flexíveis</div><div class="mchip" data-to="keep"><strong>Regras flexíveis</strong></div></div>
+</div>
+</div>
+<div class="morphMid"><div class="bigarrow" aria-hidden="true">→</div>
+    <!--<button id="morphReplay" type="button">Rever</button>
+    -->
+</div>
+<div class="zone sabm"><h3>SABM</h3>
+<div class="sub2 keep"><h4>Mantém</h4><div class="chips" id="morphKeep"><div class="mghost" data-g="keep">Avaliação semântica</div><div class="mghost" data-g="keep">Agentes críveis</div><div class="mghost" data-g="keep">Senso comum e decisão humana</div><div class="mghost" data-g="keep">Regras flexíveis</div></div></div>
+<div class="sub2 drop"><h4>Abre mão</h4><div class="chips" id="morphDrop"><div class="mghost" data-g="drop">Memória</div><div class="mghost" data-g="drop">Reflexão e planejamento</div><div class="mghost" data-g="drop">Deliberação explícita</div></div></div>
+<div class="meter"><span>Custo por decisão</span><div class="track"><div class="fill" id="morphBar"></div></div></div>
+</div>
+</div>
+<div class="qbox">Mantém parte dos benefícios do LLM, mas abre mão do raciocínio e rastreabilidade das decisões</div>
 </section>
 
-<section class="slide" data-time="1:30" aria-label="Slide 10 de 10">
-<h2>Fechamento para vídeo gravado</h2>
-<ul>
-<li><strong>A GABM testa se a curva emerge</strong> de decisões verossímeis.</li>
-<li><strong>Modelos clássicos impõem a regra.</strong> Agentes decidem.</li>
-<li><strong>GitHub Stars é o teste observável</strong> pelos critérios de curva e mecanismo.</li>
-</ul>
-<div class="endcard">Obrigado por assistir. Danilo Lindemberg Amorim. PPG Modelagem em Sistemas Complexos, EACH-USP.<br>Plano completo e referências disponíveis sob solicitação. Manter esta tela parada por 10 segundos para o corte.</div>
+<section class="slide" data-time="1:30" aria-label="Slide 10 de 11">
+<h2>Metodologia</h2>
+<p class="sub">Simulação de formação da rede durante um período de tempo</p>
+
+<div class="grid3">
+<div class="card"><span class="n">1</span><h3>Similar o crescimento da rede</h3><p>Métodos Barabasi-Albert Bipartido (baseline) e SABM.</p></div>
+<div class="card"><span class="n">2</span><h3>Comparar contra dados empíricos</h3><p>Verificar o ajuste com medidas estatísticas</p></div>
+<div class="card"><span class="n">3</span><h3>Avaliar os resultados</h3><p>Qual modelo melhor se assemelha aos dados empríricos?</p></div>
+</div>
+
+<p class="sub">A mecânica da simulação com SABM irá imitar a dinâmica de desenvolvedores usando a busca do GitHub para encontrar repositórios, e decidindo se dão estrela ou não.</p>
+
+<div class="qbox">A hipótese é que o componente semântico pode ajudar a explicar por que alguns projetos se tornam mais populares</div>
+</section>
+
+<section class="slide center" data-time="1:00" aria-label="Slide 11 de 11">
+<h1>Obrigado!</h1>
+<p class="sub">Danilo Lindemberg Amorim</p>
 </section>
 
 </main>
@@ -270,8 +400,55 @@ svg.chart{width:100%;max-height:190px;background:var(--color-muted);border:1px s
 <span id="total" title="Tempo total decorrido na apresentação">Total 0:00 de 20:00</span>
 </div>
 <script src="lib/d3.v7.min.js"></script>
-<script src="ba-mechanism.js"></script>
 <script>
+window.BA = {
+  mulberry32: function(a) {
+    return function() {
+      var t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ t >>> 15, t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+  },
+  radius: function(deg) { return Math.min(60, 3 + Math.pow(deg, 1.25) * 0.65); },
+  pickTargets: function(rand, degs, m) {
+    var targets = [];
+    var totalDeg = degs.reduce(function(a,b){return a+b}, 0);
+    if(totalDeg === 0) {
+      for(var i=0; i<m; i++) {
+        var tg; do { tg = Math.floor(rand() * degs.length); } while(targets.indexOf(tg) !== -1);
+        targets.push(tg);
+      }
+      return targets;
+    }
+    while(targets.length < m && targets.length < degs.length) {
+      var r = rand() * totalDeg, sum = 0;
+      for(var i=0; i<degs.length; i++) {
+        sum += degs[i];
+        if (r <= sum) {
+          if (targets.indexOf(i) === -1) targets.push(i);
+          break;
+        }
+      }
+    }
+    return targets;
+  },
+  colorFor: function(scale, deg) { return scale(Math.min(1, deg / 30)); },
+  histogram: function(degs) {
+    var counts = {}, maxK = 0, maxFreq = 0;
+    for(var i=0; i<degs.length; i++) {
+      var k = degs[i]; if(k===0) continue;
+      counts[k] = (counts[k] || 0) + 1;
+      if (k > maxK) maxK = k;
+    }
+    var data = [];
+    for (var k in counts) {
+      if (counts[k] > maxFreq) maxFreq = counts[k];
+      data.push({k: parseInt(k), freq: counts[k]});
+    }
+    return { maxK: maxK, maxFreq: maxFreq, data: data };
+  }
+};
 (function(){
 var slides=Array.prototype.slice.call(document.querySelectorAll('.slide'));
 var i=0, progress=document.getElementById('progress'), counter=document.getElementById('counter'), clock=document.getElementById('clock');
@@ -288,8 +465,95 @@ if(timer){clearInterval(timer)}
 elapsed=0;total=parseTime(slides[i].dataset.time);update();
 timer=setInterval(function(){elapsed++;totalElapsed++;update()},1000);
 if(i===2){baPlay()}else{baPause()}
+if(slides[i].id==='morphSlide'){
+  morphReset();
+  setTimeout(morphPlay, 50); // Dá um fôlego para o layout se assentar pós-display:flex
+}
 window.scrollTo({top:0,behavior:'auto'});
 }
+var morphLeft=document.getElementById('morphLeft'),morphKeep=document.getElementById('morphKeep'),morphDrop=document.getElementById('morphDrop'),morphBar=document.getElementById('morphBar'),morphBtn=document.getElementById('morphReplay');
+var morphOrder=morphLeft?Array.prototype.slice.call(morphLeft.querySelectorAll('.mchip')):[];
+for(var mi=0;mi<morphOrder.length;mi++){morphOrder[mi]._home=morphOrder[mi].parentNode}
+var morphKeepGhosts=morphKeep?Array.prototype.slice.call(morphKeep.querySelectorAll('.mghost')):[];
+var morphDropGhosts=morphDrop?Array.prototype.slice.call(morphDrop.querySelectorAll('.mghost')):[];
+var morphRM=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function morphReset(){
+if(!morphLeft){return}
+var i;
+for(i=0;i<morphOrder.length;i++){var c=morphOrder[i];c.style.transition='none';c.style.transform='';c.style.transitionDelay='';c.classList.remove('kept','dropped');(c._home||morphLeft).appendChild(c)}
+for(i=0;i<morphKeepGhosts.length;i++){morphKeepGhosts[i].hidden=false}
+for(i=0;i<morphDropGhosts.length;i++){morphDropGhosts[i].hidden=false}
+if(morphBar){morphBar.style.transition='none';morphBar.style.width='0%'}
+void document.body.offsetWidth;
+}
+function morphPlay(){
+if(!morphLeft){return}
+var i,delay=0,ki=0,di=0;
+var r1s = [];
+
+// Passo 1: Leitura (Evita thrashing e layout shift posterior)
+for(i=0;i<morphOrder.length;i++){
+    r1s.push(morphOrder[i].getBoundingClientRect());
+}
+
+// Passo 2: Mutação DOM
+for(i=0;i<morphOrder.length;i++){
+    var c=morphOrder[i];
+    var keep=c.getAttribute('data-to')==='keep';
+    var target=keep?morphKeep:morphDrop;
+
+    if(keep){morphKeepGhosts[ki++].hidden=true}else{morphDropGhosts[di++].hidden=true}
+
+    var home=c._home||morphLeft;
+    var hg=home.querySelector?home.querySelector('.mghost'):null;
+    if(hg&&!morphRM){
+        hg.classList.add('flash');
+        (function(g,t){setTimeout(function(){g.classList.remove('flash')},t+950)})(hg,delay);
+    }
+
+    target.appendChild(c);
+    c.classList.add(keep?'kept':'dropped');
+    delay+=180;
+}
+
+void document.body.offsetWidth; // Força layout
+
+// Passo 3: Setup da Animação (FLIP Invert)
+delay=0;
+for(i=0;i<morphOrder.length;i++){
+    var c=morphOrder[i];
+    var r1=r1s[i];
+    var r2=c.getBoundingClientRect();
+    var dx=r1.left-r2.left, dy=r1.top-r2.top;
+
+    if(!morphRM&&(dx!==0||dy!==0)){
+        c.style.transition='none';
+        c.style.transform='translate('+dx+'px,'+dy+'px)';
+    }
+    delay+=180;
+}
+
+void document.body.offsetWidth; // Força layout com posições alteradas
+
+// Passo 4: Play!
+delay=0;
+for(i=0;i<morphOrder.length;i++){
+    var c=morphOrder[i];
+    if(!morphRM){
+        c.style.transition='transform .7s ease';
+        c.style.transitionDelay=delay+'ms';
+        c.style.transform='';
+    }
+    delay+=180;
+}
+
+if(morphBar){
+    morphBar.style.transition=morphRM?'none':'width 1.1s ease';
+    morphBar.style.transitionDelay=morphRM?'':(delay/1000)+'s';
+    morphBar.style.width='85%';
+}
+}
+if(morphBtn){morphBtn.addEventListener('click',function(){morphReset();morphPlay()})}
 document.getElementById('prevBtn').addEventListener('click',function(){show(i-1)});
 document.getElementById('nextBtn').addEventListener('click',function(){show(i+1)});
 document.addEventListener('keydown',function(e){
@@ -408,9 +672,9 @@ document.getElementById('baReplay').addEventListener('click',function(){baPause(
 (function ghDiagram(){
 if(!window.d3){return}
 var repos=[
-{id:'linux',name:'torvalds / linux',stars:250299,avatar:'media/avatar-torvalds.jpg'},
-{id:'vscode',name:'microsoft / vscode',stars:193069,avatar:'media/avatar-microsoft.png'},
-{id:'curl',name:'curl / curl',stars:42942,avatar:'media/avatar-curl.png'},
+{id:'linux',name:'torvalds / linux',stars:250299,avatar:'https://github.com/torvalds.png'},
+{id:'vscode',name:'microsoft / vscode',stars:193069,avatar:'https://github.com/microsoft.png'},
+{id:'curl',name:'curl / curl',stars:42942,avatar:'https://github.com/curl.png'},
 {id:'dots',name:'eu / meu-projeto',stars:11,mock:true},
 {id:'blog',name:'eu  / ideia-milionaria',stars:0,mock:true}
 ];
@@ -451,5 +715,5 @@ gT.append('text').attr('x',440).attr('y',24).attr('text-anchor','middle').attr('
 show(0);
 })();
 </script>
-</body>
-</html>
+
+</body></html>

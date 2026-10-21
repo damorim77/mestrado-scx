@@ -9,8 +9,6 @@ Este repositório começou a partir da versão 2 do plano de pesquisa. O histór
 | Caminho | Conteúdo |
 | --- | --- |
 | `plano/` | tudo que se refere ao plano de pesquisa |
-| `plano/plano.md` | roteiro do plano |
-| `plano/estado.md` | estágio atual do plano e próxima ação |
 | `plano/latex/` | fonte do plano (`plano-abnt.tex`), bibliografia (`refs.bib`) e compilação (`plano-abnt.bat`) |
 
 ## Compilação

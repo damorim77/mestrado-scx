@@ -2,17 +2,17 @@
 
 Dissertação de mestrado (PPG Modelagem em Sistemas Complexos, USP): reproduzir a formação de redes livres de escala com agentes semânticos, usando a rede de estrelas do GitHub.
 
-Base: versão 2 do plano de pesquisa (`latex/plano-abnt-v2.tex`), usada como ponto de partida deste repositório. O histórico anterior (open-science) não foi trazido.
+Este repositório começou a partir da versão 2 do plano de pesquisa. O histórico anterior, do open-science, não foi trazido.
 
 ## Layout
 
 | Caminho | Conteúdo |
 | --- | --- |
-| `latex/` | fonte do plano v2 (`plano-abnt-v2.tex`), bibliografia (`refs.bib`) e compilação (`plano-abnt-v2.bat`) |
-| `plano-v2.md` | roteiro da v2 (2026-10-19), defasado em relação ao `.tex` |
-| `knowledge/current-state.md` | objetivo, estágio e próxima ação |
-| `notes/` | diário por data (uma entrada por dia de trabalho) |
+| `plano/` | tudo que se refere ao plano de pesquisa |
+| `plano/plano.md` | roteiro do plano |
+| `plano/estado.md` | estágio atual do plano e próxima ação |
+| `plano/latex/` | fonte do plano (`plano-abnt.tex`), bibliografia (`refs.bib`) e compilação (`plano-abnt.bat`) |
 
 ## Compilação
 
-Dentro de `latex/`: `plano-abnt-v2.bat`, ou `pdflatex`, `biber`, `pdflatex`, `pdflatex`. Requer MiKTeX ou TeX Live com `abntex2` e `biblatex-abnt`.
+Dentro de `plano/latex/`: `plano-abnt.bat`, ou `pdflatex`, `biber`, `pdflatex`, `pdflatex`. Requer MiKTeX ou TeX Live com `abntex2` e `biblatex-abnt`.

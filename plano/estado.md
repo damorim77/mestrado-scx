@@ -1,4 +1,6 @@
-# Current State
+# Estado do plano
+
+Caminhos deste arquivo foram atualizados para a estrutura plano/latex/plano-abnt.tex. Os registros de datas anteriores permanecem como histórico.
 
 - Goal: apoiar dissertação sobre agentes semânticos (SABM/DS1) e emergência de redes livres de escala via estrelas no GitHub.
 - Stage: introdução revisada (pivô GABM→DS1); apresentação em vídeo finalizada (deck 11 slides, 18:00, teleprompter e roteiro PTC sincronizados, scripts injetados limpos).
